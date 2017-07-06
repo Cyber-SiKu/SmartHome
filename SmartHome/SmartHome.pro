@@ -24,14 +24,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        mainwidget.cpp \
-    mainframe.cpp
+		mainwidget.cpp \
+	mainframe.cpp
 
 HEADERS  += mainwidget.h \
-    mainframe.h
+	mainframe.h
 
 FORMS    += mainwidget.ui \
-    mainframe.ui
+	mainframe.ui
 
 RESOURCES += \
-    image.qrc
+	image.qrc
