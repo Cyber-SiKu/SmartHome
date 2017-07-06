@@ -9,13 +9,13 @@ namespace Ui {
 class Widget;
 }
 
-class Widget : public QWidget
+class MainWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit Widget(QWidget *parent = 0);
-    ~Widget();
+    explicit MainWidget(QWidget *parent = 0);
+    ~MainWidget();
     private slots:
     void recvSwithFlagHandler(bool on);
 

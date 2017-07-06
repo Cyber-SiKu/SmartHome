@@ -7,42 +7,75 @@
     <x>0</x>
     <y>0</y>
     <width>358</width>
-    <height>225</height>
+    <height>559</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Widget</string>
   </property>
-  <widget class="QLabel" name="lable_light_1">
+  <widget class="QPushButton" name="tempbutton">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>10</y>
-     <width>150</width>
-     <height>200</height>
+     <x>0</x>
+     <y>0</y>
+     <width>152</width>
+     <height>87</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(92, 53, 102);</string>
-   </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="lable_light_2">
+  <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>10</y>
-     <width>150</width>
-     <height>200</height>
+     <x>0</x>
+     <y>80</y>
+     <width>152</width>
+     <height>87</height>
     </rect>
    </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(92, 53, 102);</string>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>160</y>
+     <width>152</width>
+     <height>87</height>
+    </rect>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_4">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>240</y>
+     <width>152</width>
+     <height>87</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_5">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>320</y>
+     <width>152</width>
+     <height>87</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

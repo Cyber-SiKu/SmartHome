@@ -2,15 +2,15 @@
 #include "getswichstatuesfromserver.h"
 #include "ui_widget.h"
 
-Widget::Widget(QWidget *parent) : QWidget(parent), ui(new Ui::Widget) {
+MainWidget::MainWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Widget) {
   ui->setupUi(this);
 
   //
   QPixmap *pix1 = new QPixmap(
       QString("/home/uplooking/SmartHome/NCBIE/HelloWorld/img/lamp_off.png"));
-  *pix1 = pix1->scaled(ui->lable_light_1->size());
-  ui->lable_light_1->setPixmap(*pix1);
-  ui->lable_light_2->setPixmap(*pix1);
+  //  *pix1 = pix1->scaled(ui->lable_light_1->size());
+  //  ui->lable_light_1->setPixmap(*pix1);
+  //  ui->lable_light_2->setPixmap(*pix1);
 
   // create one thread
   GetSwichStatuesFromServer *gssfs = new GetSwichStatuesFromServer();
@@ -18,22 +18,26 @@ Widget::Widget(QWidget *parent) : QWidget(parent), ui(new Ui::Widget) {
   gssfs->start();
   connect(gssfs, SIGNAL(switchSignal(bool)), this,
           SLOT(recvSwithFlagHandler(bool)));
+
+  // /root/image/xxx.png
+  QPixmap *tempBtnPix = new QPixmap(QString("/root/images/temp_btn.png"));
+  ui->tempbutton->setIcon((QIcon(*tempBtnPix)));
 }
 
-Widget::~Widget() { delete ui; }
+MainWidget::~MainWidget() { delete ui; }
 
-void Widget::recvSwithFlagHandler(bool on) {
-  if (on) {
-    QPixmap *pix1 = new QPixmap(
-        QString("/home/uplooking/SmartHome/NCBIE/HelloWorld/img/lamp_on.png"));
-    *pix1 = pix1->scaled(ui->lable_light_1->size());
-    ui->lable_light_1->setPixmap(*pix1);
-    ui->lable_light_2->setPixmap(*pix1);
-  } else {
-    QPixmap *pix1 = new QPixmap(
-        QString("/home/uplooking/SmartHome/NCBIE/HelloWorld/img/lamp_off.png"));
-    *pix1 = pix1->scaled(ui->lable_light_1->size());
-    ui->lable_light_1->setPixmap(*pix1);
-    ui->lable_light_2->setPixmap(*pix1);
-  }
+void MainWidget::recvSwithFlagHandler(bool on) {
+  //  if (on) {
+  //    QPixmap *pix1 = new QPixmap(
+  //        QString("/home/uplooking/SmartHome/NCBIE/HelloWorld/img/lamp_on.png"));
+  //    //    *pix1 = pix1->scaled(ui->lable_light_1->size());
+  //    //    ui->lable_light_1->setPixmap(*pix1);
+  //    //    ui->lable_light_2->setPixmap(*pix1);
+  //    //  } else {
+  //    //    QPixmap *pix1 = new QPixmap(
+  //        QString("/home/uplooking/SmartHome/NCBIE/HelloWorld/img/lamp_off.png"));
+  //        //    *pix1 = pix1->scaled(ui->lable_light_1->size());
+  //        //    ui->lable_light_1->setPixmap(*pix1);
+  //        //    ui->lable_light_2->setPixmap(*pix1);
+  //        //  }
 }

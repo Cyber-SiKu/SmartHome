@@ -14,7 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -22,22 +22,32 @@ QT_BEGIN_NAMESPACE
 class Ui_Widget
 {
 public:
-    QLabel *lable_light_1;
-    QLabel *lable_light_2;
+    QPushButton *tempbutton;
+    QPushButton *pushButton_2;
+    QPushButton *pushButton_3;
+    QPushButton *pushButton_4;
+    QPushButton *pushButton_5;
 
     void setupUi(QWidget *Widget)
     {
         if (Widget->objectName().isEmpty())
             Widget->setObjectName(QStringLiteral("Widget"));
-        Widget->resize(358, 225);
-        lable_light_1 = new QLabel(Widget);
-        lable_light_1->setObjectName(QStringLiteral("lable_light_1"));
-        lable_light_1->setGeometry(QRect(20, 10, 150, 200));
-        lable_light_1->setStyleSheet(QStringLiteral("background-color: rgb(92, 53, 102);"));
-        lable_light_2 = new QLabel(Widget);
-        lable_light_2->setObjectName(QStringLiteral("lable_light_2"));
-        lable_light_2->setGeometry(QRect(190, 10, 150, 200));
-        lable_light_2->setStyleSheet(QStringLiteral("background-color: rgb(92, 53, 102);"));
+        Widget->resize(358, 559);
+        tempbutton = new QPushButton(Widget);
+        tempbutton->setObjectName(QStringLiteral("tempbutton"));
+        tempbutton->setGeometry(QRect(0, 0, 152, 87));
+        pushButton_2 = new QPushButton(Widget);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pushButton_2->setGeometry(QRect(0, 80, 152, 87));
+        pushButton_3 = new QPushButton(Widget);
+        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        pushButton_3->setGeometry(QRect(0, 160, 152, 87));
+        pushButton_4 = new QPushButton(Widget);
+        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
+        pushButton_4->setGeometry(QRect(0, 240, 152, 87));
+        pushButton_5 = new QPushButton(Widget);
+        pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
+        pushButton_5->setGeometry(QRect(0, 320, 152, 87));
 
         retranslateUi(Widget);
 
@@ -47,8 +57,11 @@ public:
     void retranslateUi(QWidget *Widget)
     {
         Widget->setWindowTitle(QApplication::translate("Widget", "Widget", Q_NULLPTR));
-        lable_light_1->setText(QApplication::translate("Widget", "TextLabel", Q_NULLPTR));
-        lable_light_2->setText(QApplication::translate("Widget", "TextLabel", Q_NULLPTR));
+        tempbutton->setText(QString());
+        pushButton_2->setText(QString());
+        pushButton_3->setText(QString());
+        pushButton_4->setText(QString());
+        pushButton_5->setText(QString());
     } // retranslateUi
 
 };

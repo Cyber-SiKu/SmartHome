@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWidget</class>
+ <widget class="QWidget" name="MainWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1024</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWidget</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>20</y>
+     <width>850</width>
+     <height>480</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <property name="lineWidth">
+    <number>1</number>
+   </property>
+  </widget>
+  <widget class="QSplitter" name="splitter">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>152</width>
+     <height>601</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+   <widget class="QPushButton" name="tempButton">
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/main/prefix/image/temp_btn.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="moistureButton">
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/main/prefix/image/humidity_btn.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="smokeButton">
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/main/prefix/image/smoke_btn.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="AirConditionerButton">
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/main/prefix/image/air_condition_btn.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="lightButton">
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/main/prefix/image/lamp_btn.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="VideoButton">
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/main/prefix/image/camera_btn.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="curtainButton">
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/main/prefix/image/curtain_btn.png);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="otherButton">
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/main/prefix/image/other_dev_btn.jpg);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QSplitter" name="splitter_2">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>510</y>
+     <width>841</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <widget class="QPushButton" name="alarmButton">
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/main/prefix/image/main_desk_btn_back.png);</string>
+    </property>
+    <property name="text">
+     <string>报警设置</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="introductionButton">
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/main/prefix/image/main_desk_btn_back.png);</string>
+    </property>
+    <property name="text">
+     <string>系统简介</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="testButton">
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/main/prefix/image/main_desk_btn_back.png);</string>
+    </property>
+    <property name="text">
+     <string>系统测试</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="aboutButton">
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/main/prefix/image/main_desk_btn_back.png);</string>
+    </property>
+    <property name="text">
+     <string>关于我们</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="returnButto">
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/main/prefix/image/main_desk_btn_back.png);</string>
+    </property>
+    <property name="text">
+     <string>返回桌面</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="otherButton_7">
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/main/prefix/image/main_desk_btn_back.png);</string>
+    </property>
+    <property name="text">
+     <string>退出系统</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>

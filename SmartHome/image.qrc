@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/main/prefix">
+        <file>image/air_condition_btn.png</file>
+        <file>image/humidity_btn.png</file>
+        <file>image/smoke_btn.png</file>
+        <file>image/temp_btn.png</file>
+        <file>image/maindesk.png</file>
+        <file>image/lamp_btn.png</file>
+        <file>image/curtain_btn.png</file>
+        <file>image/camera_btn.png</file>
+        <file>image/other_dev_btn.jpg</file>
+        <file>image/main_desk_btn_back.png</file>
+    </qresource>
+</RCC>
