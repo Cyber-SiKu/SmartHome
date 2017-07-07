@@ -25,13 +25,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
 		mainwidget.cpp \
-	mainframe.cpp
+	mainframe.cpp \
+    tempframe.cpp \
+    moistureframe.cpp
 
 HEADERS  += mainwidget.h \
-	mainframe.h
+	mainframe.h \
+    framesetting.h \
+    tempframe.h \
+    moistureframe.h
 
 FORMS    += mainwidget.ui \
-	mainframe.ui
+	mainframe.ui \
+    tempframe.ui \
+    moistureframe.ui
 
 RESOURCES += \
 	image.qrc

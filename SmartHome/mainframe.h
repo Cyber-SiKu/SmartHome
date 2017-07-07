@@ -19,9 +19,10 @@ public:
 
 private:
   Ui::MainFrame *ui;
+  //计时器
   QTimer *timer;
 private slots:
-  //使lcd显示时间
+  //使lcd动态显示时间
   void timeoutSlot();
 };
 

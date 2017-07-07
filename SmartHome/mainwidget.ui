@@ -44,7 +44,7 @@
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
    </property>
-   <widget class="QPushButton" name="alarmButton_2">
+   <widget class="QPushButton" name="alarmButton">
     <property name="styleSheet">
      <string notr="true">border-image: url(:/mainWidget/image/main_desk_btn_back.png);
 color: rgb(206, 92, 0);</string>
@@ -52,8 +52,11 @@ color: rgb(206, 92, 0);</string>
     <property name="text">
      <string>报警设置</string>
     </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
    </widget>
-   <widget class="QPushButton" name="introductionButton_2">
+   <widget class="QPushButton" name="introductionButton">
     <property name="styleSheet">
      <string notr="true">border-image: url(:/mainWidget/image/main_desk_btn_back.png);
 color: rgb(206, 92, 0);</string>
@@ -61,8 +64,11 @@ color: rgb(206, 92, 0);</string>
     <property name="text">
      <string>系统简介</string>
     </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
    </widget>
-   <widget class="QPushButton" name="testButton_2">
+   <widget class="QPushButton" name="testButton_">
     <property name="styleSheet">
      <string notr="true">border-image: url(:/mainWidget/image/main_desk_btn_back.png);
 color: rgb(206, 92, 0);</string>
@@ -70,8 +76,11 @@ color: rgb(206, 92, 0);</string>
     <property name="text">
      <string>系统测试</string>
     </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
    </widget>
-   <widget class="QPushButton" name="aboutButton_2">
+   <widget class="QPushButton" name="aboutButton">
     <property name="styleSheet">
      <string notr="true">border-image: url(:/mainWidget/image/main_desk_btn_back.png);
 color: rgb(206, 92, 0);</string>
@@ -79,8 +88,11 @@ color: rgb(206, 92, 0);</string>
     <property name="text">
      <string>关于我们</string>
     </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
    </widget>
-   <widget class="QPushButton" name="returnButto_2">
+   <widget class="QPushButton" name="returnButto">
     <property name="styleSheet">
      <string notr="true">border-image: url(:/mainWidget/image/main_desk_btn_back.png);
 color: rgb(206, 92, 0);</string>
@@ -88,14 +100,20 @@ color: rgb(206, 92, 0);</string>
     <property name="text">
      <string>返回桌面</string>
     </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
    </widget>
-   <widget class="QPushButton" name="otherButton_8">
+   <widget class="QPushButton" name="exitButton">
     <property name="styleSheet">
      <string notr="true">border-image: url(:/mainWidget/image/main_desk_btn_back.png);
 color: rgb(206, 92, 0);</string>
     </property>
     <property name="text">
      <string>退出系统</string>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
@@ -133,68 +151,92 @@ color: rgb(206, 92, 0);</string>
    <property name="orientation">
     <enum>Qt::Vertical</enum>
    </property>
-   <widget class="QPushButton" name="tempButton_2">
+   <widget class="QPushButton" name="tempButton">
     <property name="styleSheet">
      <string notr="true">border-image: url(:/mainWidget/image/temp_btn.png);</string>
     </property>
     <property name="text">
      <string/>
     </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
    </widget>
-   <widget class="QPushButton" name="moistureButton_2">
+   <widget class="QPushButton" name="moistureButton">
     <property name="styleSheet">
      <string notr="true">border-image: url(:/mainWidget/image/humidity_btn.png);</string>
     </property>
     <property name="text">
      <string/>
     </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
    </widget>
-   <widget class="QPushButton" name="smokeButton_2">
+   <widget class="QPushButton" name="smokeButton">
     <property name="styleSheet">
      <string notr="true">border-image: url(:/mainWidget/image/smoke_btn.png);</string>
     </property>
     <property name="text">
      <string/>
     </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
    </widget>
-   <widget class="QPushButton" name="AirConditionerButton_2">
+   <widget class="QPushButton" name="airConditionerButton">
     <property name="styleSheet">
      <string notr="true">border-image: url(:/mainWidget/image/air_condition_btn.png);</string>
     </property>
     <property name="text">
      <string/>
     </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
    </widget>
-   <widget class="QPushButton" name="lightButton_2">
+   <widget class="QPushButton" name="lightButton">
     <property name="styleSheet">
      <string notr="true">border-image: url(:/mainWidget/image/lamp_btn.png);</string>
     </property>
     <property name="text">
      <string/>
     </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
    </widget>
-   <widget class="QPushButton" name="VideoButton_2">
+   <widget class="QPushButton" name="videoButton">
     <property name="styleSheet">
      <string notr="true">border-image: url(:/mainWidget/image/camera_btn.png);</string>
     </property>
     <property name="text">
      <string/>
     </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
    </widget>
-   <widget class="QPushButton" name="curtainButton_2">
+   <widget class="QPushButton" name="curtainButton">
     <property name="styleSheet">
      <string notr="true">border-image: url(:/mainWidget/image/curtain_btn.png);</string>
     </property>
     <property name="text">
      <string/>
     </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
    </widget>
-   <widget class="QPushButton" name="otherButton_2">
+   <widget class="QPushButton" name="otherButton">
     <property name="styleSheet">
      <string notr="true">border-image: url(:/mainWidget/image/other_dev_btn.jpg);</string>
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
