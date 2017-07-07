@@ -27,18 +27,34 @@ SOURCES += main.cpp\
 		mainwidget.cpp \
 	mainframe.cpp \
     tempframe.cpp \
-    moistureframe.cpp
+    moistureframe.cpp \
+    smokeframe.cpp \
+    airconditionframe.cpp \
+    lightframe.cpp \
+    alarmframe.cpp \
+    buzzercontrol.cpp \
+    ledcontrol.cpp
 
 HEADERS  += mainwidget.h \
 	mainframe.h \
     framesetting.h \
     tempframe.h \
-    moistureframe.h
+    moistureframe.h \
+    smokeframe.h \
+    airconditionframe.h \
+    lightframe.h \
+    alarmframe.h \
+    buzzercontrol.h \
+    ledcontrol.h
 
 FORMS    += mainwidget.ui \
 	mainframe.ui \
     tempframe.ui \
-    moistureframe.ui
+    moistureframe.ui \
+    somkeframe.ui \
+    airconditionframe.ui \
+    lightframe.ui \
+    alarmframe.ui
 
 RESOURCES += \
 	image.qrc

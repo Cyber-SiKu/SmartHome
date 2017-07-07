@@ -5,9 +5,7 @@
 
 MainFrame::MainFrame(QWidget *parent) : QFrame(parent), ui(new Ui::MainFrame) {
   ui->setupUi(this);
-
   timeoutSlot();
-
   //添加计时器1s刷新一次lcd
   timer = new QTimer(this);
   timer->start(1000);

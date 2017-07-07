@@ -4,7 +4,6 @@
 MoistureFrame::MoistureFrame(QWidget *parent)
     : QFrame(parent), ui(new Ui::MoistureFrame) {
   ui->setupUi(this);
-  this->show();
 
   bedroomMoisture = 16;
   parlourMoisture = 26;

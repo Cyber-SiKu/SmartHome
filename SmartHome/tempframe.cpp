@@ -3,7 +3,6 @@
 
 TempFrame::TempFrame(QWidget *parent) : QFrame(parent), ui(new Ui::TempFrame) {
   ui->setupUi(this);
-  this->show();
 
   bedroomTemp = 16;
   parlourTemp = 26;

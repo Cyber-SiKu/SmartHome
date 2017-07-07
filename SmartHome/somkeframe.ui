@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MoistureFrame</class>
- <widget class="QFrame" name="MoistureFrame">
+ <class>SomkeFrame</class>
+ <widget class="QFrame" name="SomkeFrame">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -54,7 +54,7 @@
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">selection-background-color: rgb(32, 74, 135);</string>
+         <string notr="true">selection-background-color: rgb(78, 154, 6);</string>
         </property>
         <property name="value">
          <number>16</number>
@@ -95,7 +95,7 @@
       <item>
        <widget class="QProgressBar" name="parlourMoistureProgressBar">
         <property name="styleSheet">
-         <string notr="true">selection-background-color: rgb(32, 74, 135);</string>
+         <string notr="true">selection-background-color: rgb(78, 154, 6);</string>
         </property>
         <property name="value">
          <number>22</number>
@@ -136,7 +136,7 @@
       <item>
        <widget class="QProgressBar" name="kichenMoistureProgressBar">
         <property name="styleSheet">
-         <string notr="true">selection-background-color: rgb(32, 74, 135);</string>
+         <string notr="true">selection-background-color: rgb(78, 154, 6);</string>
         </property>
         <property name="value">
          <number>30</number>

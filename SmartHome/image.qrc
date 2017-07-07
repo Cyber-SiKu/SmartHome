@@ -12,10 +12,31 @@
         <file>image/main_desk_btn_back.png</file>
         <file>image/temp_btn_select.png</file>
         <file>image/huminity_btn_select.png</file>
+        <file>image/smoke_btn_select.png</file>
+        <file>image/temp_desk.png</file>
+        <file>image/humidity_desk.png</file>
+        <file>image/air_condition_btn_select.png</file>
+        <file>image/air_condition_desk.png</file>
+        <file>image/lamp_desk.png</file>
+        <file>image/lamp_btn_select.png</file>
+        <file>image/other_dev_desk.jpg</file>
     </qresource>
     <qresource prefix="/mainFrame">
         <file>image/server_text.png</file>
         <file>image/running_text.png</file>
         <file>image/alarming_text.png</file>
+    </qresource>
+    <qresource prefix="/airConditionFrame">
+        <file>image/air_condition_on.png</file>
+        <file>image/air_condition_off.png</file>
+    </qresource>
+    <qresource prefix="/lightFrame">
+        <file>image/lamp_off.png</file>
+        <file>image/lamp_on.png</file>
+    </qresource>
+    <qresource prefix="/alarmFrame">
+        <file>image/buzzer_on.ico</file>
+        <file>image/buzzer_off.ico</file>
+        <file>image/main_desk_line3_background.png</file>
     </qresource>
 </RCC>

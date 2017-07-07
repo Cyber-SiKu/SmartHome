@@ -25,6 +25,16 @@ private slots:
 
   void updatePushButton();
 
+  void on_airConditionerButton_clicked();
+
+  void on_lightButton_clicked();
+
+  void on_alarmButton_clicked();
+
+  void on_returnButto_clicked();
+
+  void on_exitButton_clicked();
+
 private:
   Ui::MainWidget *ui;
 };

@@ -50,15 +50,47 @@ OBJECTS_DIR   = ./
 
 SOURCES       = main.cpp \
 		mainwidget.cpp \
-		mainframe.cpp qrc_image.cpp \
+		mainframe.cpp \
+		tempframe.cpp \
+		moistureframe.cpp \
+		smokeframe.cpp \
+		airconditionframe.cpp \
+		lightframe.cpp \
+		alarmframe.cpp \
+		buzzercontrol.cpp \
+		ledcontrol.cpp qrc_image.cpp \
 		moc_mainwidget.cpp \
-		moc_mainframe.cpp
+		moc_mainframe.cpp \
+		moc_tempframe.cpp \
+		moc_moistureframe.cpp \
+		moc_smokeframe.cpp \
+		moc_airconditionframe.cpp \
+		moc_lightframe.cpp \
+		moc_alarmframe.cpp \
+		moc_buzzercontrol.cpp \
+		moc_ledcontrol.cpp
 OBJECTS       = main.o \
 		mainwidget.o \
 		mainframe.o \
+		tempframe.o \
+		moistureframe.o \
+		smokeframe.o \
+		airconditionframe.o \
+		lightframe.o \
+		alarmframe.o \
+		buzzercontrol.o \
+		ledcontrol.o \
 		qrc_image.o \
 		moc_mainwidget.o \
-		moc_mainframe.o
+		moc_mainframe.o \
+		moc_tempframe.o \
+		moc_moistureframe.o \
+		moc_smokeframe.o \
+		moc_airconditionframe.o \
+		moc_lightframe.o \
+		moc_alarmframe.o \
+		moc_buzzercontrol.o \
+		moc_ledcontrol.o
 DIST          = ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/features/spec_pre.prf \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/common/shell-unix.conf \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/common/unix.conf \
@@ -148,9 +180,25 @@ DIST          = ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/us
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/features/lex.prf \
 		SmartHome.pro mainwidget.h \
 		mainframe.h \
-		framesetting.h main.cpp \
+		framesetting.h \
+		tempframe.h \
+		moistureframe.h \
+		smokeframe.h \
+		airconditionframe.h \
+		lightframe.h \
+		alarmframe.h \
+		buzzercontrol.h \
+		ledcontrol.h main.cpp \
 		mainwidget.cpp \
-		mainframe.cpp
+		mainframe.cpp \
+		tempframe.cpp \
+		moistureframe.cpp \
+		smokeframe.cpp \
+		airconditionframe.cpp \
+		lightframe.cpp \
+		alarmframe.cpp \
+		buzzercontrol.cpp \
+		ledcontrol.cpp
 QMAKE_TARGET  = SmartHome
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = SmartHome
@@ -178,7 +226,7 @@ first: all
 
 ####### Build rules
 
-$(TARGET): ui_mainwidget.h ui_mainframe.h $(OBJECTS)  
+$(TARGET): ui_mainwidget.h ui_mainframe.h ui_tempframe.h ui_moistureframe.h ui_somkeframe.h ui_airconditionframe.h ui_lightframe.h ui_alarmframe.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: SmartHome.pro ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++/qmake.conf ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/features/spec_pre.prf \
@@ -381,9 +429,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents image.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents mainwidget.h mainframe.h framesetting.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp mainwidget.cpp mainframe.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents mainwidget.ui mainframe.ui $(DISTDIR)/
+	$(COPY_FILE) --parents mainwidget.h mainframe.h framesetting.h tempframe.h moistureframe.h smokeframe.h airconditionframe.h lightframe.h alarmframe.h buzzercontrol.h ledcontrol.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp mainwidget.cpp mainframe.cpp tempframe.cpp moistureframe.cpp smokeframe.cpp airconditionframe.cpp lightframe.cpp alarmframe.cpp buzzercontrol.cpp ledcontrol.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents mainwidget.ui mainframe.ui tempframe.ui moistureframe.ui somkeframe.ui airconditionframe.ui lightframe.ui alarmframe.ui $(DISTDIR)/
 
 
 clean:compiler_clean 
@@ -411,21 +459,38 @@ qrc_image.cpp: image.qrc \
 		image/running_text.png \
 		image/alarming_text.png \
 		image/server_text.png \
-		image/maindesk.png \
-		image/smoke_btn.png \
-		image/lamp_btn.png \
-		image/other_dev_btn.jpg \
-		image/humidity_btn.png \
+		image/air_condition_on.png \
+		image/air_condition_off.png \
 		image/main_desk_btn_back.png \
+		image/lamp_btn_select.png \
+		image/smoke_btn.png \
+		image/humidity_btn.png \
+		image/maindesk.png \
+		image/temp_btn_select.png \
 		image/curtain_btn.png \
-		image/camera_btn.png \
+		image/other_dev_btn.jpg \
 		image/air_condition_btn.png \
-		image/temp_btn.png
+		image/other_dev_desk.jpg \
+		image/smoke_btn_select.png \
+		image/air_condition_btn_select.png \
+		image/air_condition_desk.png \
+		image/humidity_desk.png \
+		image/temp_btn.png \
+		image/temp_desk.png \
+		image/camera_btn.png \
+		image/huminity_btn_select.png \
+		image/lamp_btn.png \
+		image/lamp_desk.png \
+		image/buzzer_on.ico \
+		image/buzzer_off.ico \
+		image/main_desk_line3_background.png \
+		image/lamp_off.png \
+		image/lamp_on.png
 	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/rcc -name image image.qrc -o qrc_image.cpp
 
-compiler_moc_header_make_all: moc_mainwidget.cpp moc_mainframe.cpp
+compiler_moc_header_make_all: moc_mainwidget.cpp moc_mainframe.cpp moc_tempframe.cpp moc_moistureframe.cpp moc_smokeframe.cpp moc_airconditionframe.cpp moc_lightframe.cpp moc_alarmframe.cpp moc_buzzercontrol.cpp moc_ledcontrol.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwidget.cpp moc_mainframe.cpp
+	-$(DEL_FILE) moc_mainwidget.cpp moc_mainframe.cpp moc_tempframe.cpp moc_moistureframe.cpp moc_smokeframe.cpp moc_airconditionframe.cpp moc_lightframe.cpp moc_alarmframe.cpp moc_buzzercontrol.cpp moc_ledcontrol.cpp
 moc_mainwidget.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QWidget \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qwidget.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs.h \
@@ -640,16 +705,785 @@ moc_mainframe.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host
 		mainframe.h
 	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include mainframe.h -o moc_mainframe.cpp
 
+moc_tempframe.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QFrame \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qframe.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qwidget.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobal.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qconfig.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfeatures.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsystemdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qprocessordetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcompilerdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypeinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypetraits.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsysinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlogging.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qflags.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasicatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_bootstrap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qgenericatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_msvc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv7.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv6.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv5.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_ia64.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_mips.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_x86.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_cxx11.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_gcc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_unix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobalstatic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmutex.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnumeric.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnamespace.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs_win.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstring.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qchar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrefcount.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qarraydata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringbuilder.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qalgorithms.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiterator.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearraylist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcoreevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qscopedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmetatype.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvarlengtharray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontainerfwd.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qisenum.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmargins.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpaintdevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrect.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsize.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qpoint.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpalette.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qcolor.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qrgb.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qdatastream.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiodevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qpair.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qregexp.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringmatcher.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qbrush.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvector.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qmatrix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpolygon.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qregion.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qline.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtransform.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpainterpath.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qimage.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpixelformat.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpixmap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsharedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qshareddata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qhash.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsharedpointer_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfont.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfontmetrics.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfontinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qsizepolicy.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qcursor.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qkeysequence.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvariant.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qdebug.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtextstream.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlocale.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qset.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontiguouscache.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qurl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qurlquery.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfile.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfiledevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qvector2d.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtouchdevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QTimer \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtimer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasictimer.h \
+		tempframe.h
+	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include tempframe.h -o moc_tempframe.cpp
+
+moc_moistureframe.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QFrame \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qframe.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qwidget.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobal.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qconfig.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfeatures.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsystemdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qprocessordetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcompilerdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypeinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypetraits.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsysinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlogging.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qflags.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasicatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_bootstrap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qgenericatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_msvc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv7.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv6.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv5.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_ia64.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_mips.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_x86.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_cxx11.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_gcc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_unix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobalstatic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmutex.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnumeric.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnamespace.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs_win.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstring.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qchar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrefcount.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qarraydata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringbuilder.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qalgorithms.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiterator.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearraylist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcoreevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qscopedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmetatype.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvarlengtharray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontainerfwd.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qisenum.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmargins.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpaintdevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrect.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsize.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qpoint.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpalette.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qcolor.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qrgb.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qdatastream.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiodevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qpair.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qregexp.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringmatcher.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qbrush.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvector.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qmatrix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpolygon.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qregion.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qline.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtransform.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpainterpath.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qimage.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpixelformat.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpixmap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsharedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qshareddata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qhash.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsharedpointer_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfont.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfontmetrics.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfontinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qsizepolicy.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qcursor.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qkeysequence.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvariant.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qdebug.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtextstream.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlocale.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qset.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontiguouscache.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qurl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qurlquery.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfile.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfiledevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qvector2d.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtouchdevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QTimer \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtimer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasictimer.h \
+		moistureframe.h
+	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include moistureframe.h -o moc_moistureframe.cpp
+
+moc_smokeframe.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QFrame \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qframe.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qwidget.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobal.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qconfig.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfeatures.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsystemdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qprocessordetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcompilerdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypeinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypetraits.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsysinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlogging.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qflags.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasicatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_bootstrap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qgenericatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_msvc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv7.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv6.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv5.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_ia64.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_mips.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_x86.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_cxx11.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_gcc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_unix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobalstatic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmutex.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnumeric.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnamespace.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs_win.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstring.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qchar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrefcount.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qarraydata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringbuilder.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qalgorithms.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiterator.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearraylist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcoreevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qscopedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmetatype.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvarlengtharray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontainerfwd.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qisenum.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmargins.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpaintdevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrect.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsize.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qpoint.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpalette.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qcolor.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qrgb.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qdatastream.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiodevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qpair.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qregexp.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringmatcher.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qbrush.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvector.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qmatrix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpolygon.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qregion.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qline.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtransform.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpainterpath.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qimage.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpixelformat.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpixmap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsharedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qshareddata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qhash.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsharedpointer_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfont.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfontmetrics.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfontinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qsizepolicy.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qcursor.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qkeysequence.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvariant.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qdebug.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtextstream.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlocale.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qset.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontiguouscache.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qurl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qurlquery.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfile.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfiledevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qvector2d.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtouchdevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QTimer \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtimer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasictimer.h \
+		smokeframe.h
+	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include smokeframe.h -o moc_smokeframe.cpp
+
+moc_airconditionframe.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QFrame \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qframe.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qwidget.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobal.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qconfig.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfeatures.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsystemdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qprocessordetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcompilerdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypeinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypetraits.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsysinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlogging.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qflags.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasicatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_bootstrap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qgenericatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_msvc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv7.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv6.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv5.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_ia64.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_mips.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_x86.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_cxx11.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_gcc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_unix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobalstatic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmutex.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnumeric.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnamespace.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs_win.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstring.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qchar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrefcount.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qarraydata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringbuilder.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qalgorithms.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiterator.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearraylist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcoreevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qscopedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmetatype.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvarlengtharray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontainerfwd.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qisenum.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmargins.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpaintdevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrect.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsize.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qpoint.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpalette.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qcolor.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qrgb.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qdatastream.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiodevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qpair.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qregexp.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringmatcher.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qbrush.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvector.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qmatrix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpolygon.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qregion.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qline.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtransform.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpainterpath.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qimage.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpixelformat.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpixmap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsharedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qshareddata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qhash.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsharedpointer_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfont.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfontmetrics.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfontinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qsizepolicy.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qcursor.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qkeysequence.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvariant.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qdebug.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtextstream.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlocale.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qset.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontiguouscache.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qurl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qurlquery.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfile.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfiledevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qvector2d.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtouchdevice.h \
+		airconditionframe.h
+	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include airconditionframe.h -o moc_airconditionframe.cpp
+
+moc_lightframe.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QFrame \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qframe.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qwidget.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobal.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qconfig.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfeatures.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsystemdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qprocessordetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcompilerdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypeinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypetraits.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsysinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlogging.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qflags.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasicatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_bootstrap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qgenericatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_msvc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv7.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv6.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv5.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_ia64.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_mips.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_x86.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_cxx11.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_gcc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_unix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobalstatic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmutex.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnumeric.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnamespace.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs_win.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstring.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qchar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrefcount.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qarraydata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringbuilder.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qalgorithms.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiterator.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearraylist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcoreevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qscopedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmetatype.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvarlengtharray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontainerfwd.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qisenum.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmargins.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpaintdevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrect.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsize.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qpoint.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpalette.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qcolor.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qrgb.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qdatastream.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiodevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qpair.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qregexp.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringmatcher.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qbrush.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvector.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qmatrix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpolygon.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qregion.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qline.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtransform.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpainterpath.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qimage.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpixelformat.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpixmap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsharedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qshareddata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qhash.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsharedpointer_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfont.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfontmetrics.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfontinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qsizepolicy.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qcursor.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qkeysequence.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvariant.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qdebug.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtextstream.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlocale.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qset.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontiguouscache.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qurl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qurlquery.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfile.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfiledevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qvector2d.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtouchdevice.h \
+		lightframe.h
+	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include lightframe.h -o moc_lightframe.cpp
+
+moc_alarmframe.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QFrame \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qframe.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qwidget.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobal.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qconfig.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfeatures.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsystemdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qprocessordetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcompilerdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypeinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypetraits.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsysinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlogging.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qflags.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasicatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_bootstrap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qgenericatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_msvc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv7.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv6.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv5.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_ia64.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_mips.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_x86.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_cxx11.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_gcc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_unix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobalstatic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmutex.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnumeric.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnamespace.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs_win.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstring.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qchar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrefcount.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qarraydata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringbuilder.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qalgorithms.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiterator.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearraylist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcoreevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qscopedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmetatype.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvarlengtharray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontainerfwd.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qisenum.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmargins.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpaintdevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrect.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsize.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qpoint.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpalette.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qcolor.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qrgb.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qdatastream.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiodevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qpair.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qregexp.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringmatcher.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qbrush.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvector.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qmatrix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpolygon.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qregion.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qline.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtransform.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpainterpath.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qimage.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpixelformat.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpixmap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsharedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qshareddata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qhash.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsharedpointer_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfont.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfontmetrics.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfontinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qsizepolicy.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qcursor.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qkeysequence.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvariant.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qdebug.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtextstream.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlocale.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qset.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontiguouscache.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qurl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qurlquery.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfile.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfiledevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qvector2d.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtouchdevice.h \
+		alarmframe.h
+	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include alarmframe.h -o moc_alarmframe.cpp
+
+moc_buzzercontrol.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QObject \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnamespace.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobal.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qconfig.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfeatures.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsystemdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qprocessordetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcompilerdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypeinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypetraits.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsysinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlogging.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qflags.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasicatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_bootstrap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qgenericatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_msvc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv7.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv6.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv5.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_ia64.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_mips.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_x86.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_cxx11.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_gcc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_unix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobalstatic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmutex.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnumeric.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstring.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qchar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrefcount.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qarraydata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringbuilder.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qalgorithms.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiterator.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearraylist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcoreevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qscopedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmetatype.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvarlengtharray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontainerfwd.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qisenum.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject_impl.h \
+		buzzercontrol.h
+	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include buzzercontrol.h -o moc_buzzercontrol.cpp
+
+moc_ledcontrol.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QObject \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnamespace.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobal.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qconfig.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfeatures.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsystemdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qprocessordetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcompilerdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypeinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypetraits.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsysinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlogging.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qflags.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasicatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_bootstrap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qgenericatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_msvc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv7.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv6.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv5.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_ia64.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_mips.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_x86.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_cxx11.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_gcc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_unix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobalstatic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmutex.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnumeric.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstring.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qchar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrefcount.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qarraydata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringbuilder.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qalgorithms.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiterator.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearraylist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcoreevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qscopedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmetatype.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvarlengtharray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontainerfwd.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qisenum.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject_impl.h \
+		ledcontrol.h
+	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ledcontrol.h -o moc_ledcontrol.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwidget.h ui_mainframe.h
+compiler_uic_make_all: ui_mainwidget.h ui_mainframe.h ui_tempframe.h ui_moistureframe.h ui_somkeframe.h ui_airconditionframe.h ui_lightframe.h ui_alarmframe.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwidget.h ui_mainframe.h
+	-$(DEL_FILE) ui_mainwidget.h ui_mainframe.h ui_tempframe.h ui_moistureframe.h ui_somkeframe.h ui_airconditionframe.h ui_lightframe.h ui_alarmframe.h
 ui_mainwidget.h: mainwidget.ui
 	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/uic mainwidget.ui -o ui_mainwidget.h
 
 ui_mainframe.h: mainframe.ui
 	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/uic mainframe.ui -o ui_mainframe.h
+
+ui_tempframe.h: tempframe.ui
+	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/uic tempframe.ui -o ui_tempframe.h
+
+ui_moistureframe.h: moistureframe.ui
+	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/uic moistureframe.ui -o ui_moistureframe.h
+
+ui_somkeframe.h: somkeframe.ui
+	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/uic somkeframe.ui -o ui_somkeframe.h
+
+ui_airconditionframe.h: airconditionframe.ui
+	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/uic airconditionframe.ui -o ui_airconditionframe.h
+
+ui_lightframe.h: lightframe.ui
+	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/uic lightframe.ui -o ui_lightframe.h
+
+ui_alarmframe.h: alarmframe.ui
+	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/uic alarmframe.ui -o ui_alarmframe.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -878,14 +1712,23 @@ mainwidget.o: mainwidget.cpp mainwidget.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfiledevice.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qvector2d.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtouchdevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QMessageBox \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qmessagebox.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qdialog.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/QPixmap \
-		framesetting.h \
-		mainframe.h \
+		airconditionframe.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QFrame \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qframe.h \
+		alarmframe.h \
+		framesetting.h \
+		lightframe.h \
+		mainframe.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QTimer \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtimer.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasictimer.h \
+		moistureframe.h \
+		smokeframe.h \
+		tempframe.h \
 		ui_mainwidget.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QVariant \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QAction \
@@ -1086,6 +1929,1020 @@ mainframe.o: mainframe.cpp mainframe.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qdatetime.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainframe.o mainframe.cpp
 
+tempframe.o: tempframe.cpp tempframe.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QFrame \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qframe.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qwidget.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobal.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qconfig.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfeatures.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsystemdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qprocessordetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcompilerdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypeinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypetraits.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsysinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlogging.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qflags.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasicatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_bootstrap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qgenericatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_msvc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv7.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv6.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv5.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_ia64.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_mips.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_x86.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_cxx11.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_gcc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_unix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobalstatic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmutex.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnumeric.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnamespace.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs_win.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstring.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qchar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrefcount.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qarraydata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringbuilder.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qalgorithms.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiterator.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearraylist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcoreevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qscopedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmetatype.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvarlengtharray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontainerfwd.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qisenum.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmargins.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpaintdevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrect.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsize.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qpoint.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpalette.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qcolor.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qrgb.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qdatastream.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiodevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qpair.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qregexp.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringmatcher.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qbrush.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvector.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qmatrix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpolygon.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qregion.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qline.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtransform.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpainterpath.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qimage.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpixelformat.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpixmap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsharedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qshareddata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qhash.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsharedpointer_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfont.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfontmetrics.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfontinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qsizepolicy.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qcursor.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qkeysequence.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvariant.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qdebug.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtextstream.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlocale.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qset.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontiguouscache.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qurl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qurlquery.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfile.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfiledevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qvector2d.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtouchdevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QTimer \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtimer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasictimer.h \
+		ui_tempframe.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QVariant \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QAction \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qaction.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qicon.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qactiongroup.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QApplication \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qapplication.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcoreapplication.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qeventloop.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qdesktopwidget.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qguiapplication.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qinputmethod.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QButtonGroup \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qbuttongroup.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QHBoxLayout \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qboxlayout.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qlayout.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qlayoutitem.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qgridlayout.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QHeaderView \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qheaderview.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractitemview.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractscrollarea.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qabstractitemmodel.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qitemselectionmodel.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractitemdelegate.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qstyleoption.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractspinbox.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qvalidator.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qregularexpression.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qslider.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractslider.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qstyle.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qtabbar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qtabwidget.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qrubberband.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QLabel \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qlabel.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QProgressBar \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qprogressbar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QVBoxLayout \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QWidget
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tempframe.o tempframe.cpp
+
+moistureframe.o: moistureframe.cpp moistureframe.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QFrame \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qframe.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qwidget.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobal.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qconfig.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfeatures.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsystemdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qprocessordetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcompilerdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypeinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypetraits.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsysinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlogging.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qflags.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasicatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_bootstrap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qgenericatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_msvc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv7.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv6.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv5.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_ia64.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_mips.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_x86.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_cxx11.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_gcc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_unix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobalstatic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmutex.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnumeric.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnamespace.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs_win.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstring.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qchar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrefcount.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qarraydata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringbuilder.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qalgorithms.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiterator.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearraylist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcoreevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qscopedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmetatype.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvarlengtharray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontainerfwd.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qisenum.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmargins.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpaintdevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrect.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsize.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qpoint.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpalette.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qcolor.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qrgb.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qdatastream.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiodevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qpair.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qregexp.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringmatcher.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qbrush.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvector.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qmatrix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpolygon.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qregion.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qline.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtransform.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpainterpath.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qimage.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpixelformat.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpixmap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsharedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qshareddata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qhash.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsharedpointer_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfont.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfontmetrics.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfontinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qsizepolicy.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qcursor.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qkeysequence.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvariant.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qdebug.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtextstream.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlocale.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qset.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontiguouscache.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qurl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qurlquery.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfile.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfiledevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qvector2d.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtouchdevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QTimer \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtimer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasictimer.h \
+		ui_moistureframe.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QVariant \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QAction \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qaction.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qicon.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qactiongroup.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QApplication \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qapplication.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcoreapplication.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qeventloop.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qdesktopwidget.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qguiapplication.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qinputmethod.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QButtonGroup \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qbuttongroup.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QHBoxLayout \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qboxlayout.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qlayout.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qlayoutitem.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qgridlayout.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QHeaderView \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qheaderview.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractitemview.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractscrollarea.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qabstractitemmodel.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qitemselectionmodel.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractitemdelegate.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qstyleoption.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractspinbox.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qvalidator.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qregularexpression.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qslider.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractslider.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qstyle.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qtabbar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qtabwidget.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qrubberband.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QLabel \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qlabel.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QProgressBar \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qprogressbar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QVBoxLayout \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QWidget
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moistureframe.o moistureframe.cpp
+
+smokeframe.o: smokeframe.cpp smokeframe.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QFrame \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qframe.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qwidget.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobal.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qconfig.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfeatures.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsystemdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qprocessordetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcompilerdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypeinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypetraits.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsysinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlogging.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qflags.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasicatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_bootstrap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qgenericatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_msvc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv7.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv6.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv5.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_ia64.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_mips.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_x86.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_cxx11.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_gcc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_unix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobalstatic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmutex.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnumeric.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnamespace.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs_win.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstring.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qchar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrefcount.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qarraydata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringbuilder.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qalgorithms.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiterator.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearraylist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcoreevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qscopedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmetatype.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvarlengtharray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontainerfwd.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qisenum.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmargins.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpaintdevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrect.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsize.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qpoint.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpalette.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qcolor.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qrgb.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qdatastream.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiodevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qpair.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qregexp.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringmatcher.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qbrush.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvector.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qmatrix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpolygon.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qregion.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qline.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtransform.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpainterpath.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qimage.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpixelformat.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpixmap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsharedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qshareddata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qhash.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsharedpointer_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfont.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfontmetrics.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfontinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qsizepolicy.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qcursor.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qkeysequence.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvariant.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qdebug.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtextstream.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlocale.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qset.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontiguouscache.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qurl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qurlquery.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfile.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfiledevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qvector2d.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtouchdevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QTimer \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtimer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasictimer.h \
+		ui_somkeframe.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QVariant \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QAction \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qaction.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qicon.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qactiongroup.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QApplication \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qapplication.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcoreapplication.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qeventloop.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qdesktopwidget.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qguiapplication.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qinputmethod.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QButtonGroup \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qbuttongroup.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QHBoxLayout \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qboxlayout.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qlayout.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qlayoutitem.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qgridlayout.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QHeaderView \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qheaderview.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractitemview.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractscrollarea.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qabstractitemmodel.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qitemselectionmodel.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractitemdelegate.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qstyleoption.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractspinbox.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qvalidator.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qregularexpression.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qslider.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractslider.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qstyle.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qtabbar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qtabwidget.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qrubberband.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QLabel \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qlabel.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QProgressBar \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qprogressbar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QVBoxLayout \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QWidget
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o smokeframe.o smokeframe.cpp
+
+airconditionframe.o: airconditionframe.cpp airconditionframe.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QFrame \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qframe.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qwidget.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobal.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qconfig.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfeatures.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsystemdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qprocessordetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcompilerdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypeinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypetraits.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsysinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlogging.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qflags.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasicatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_bootstrap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qgenericatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_msvc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv7.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv6.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv5.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_ia64.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_mips.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_x86.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_cxx11.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_gcc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_unix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobalstatic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmutex.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnumeric.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnamespace.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs_win.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstring.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qchar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrefcount.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qarraydata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringbuilder.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qalgorithms.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiterator.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearraylist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcoreevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qscopedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmetatype.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvarlengtharray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontainerfwd.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qisenum.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmargins.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpaintdevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrect.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsize.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qpoint.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpalette.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qcolor.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qrgb.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qdatastream.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiodevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qpair.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qregexp.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringmatcher.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qbrush.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvector.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qmatrix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpolygon.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qregion.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qline.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtransform.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpainterpath.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qimage.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpixelformat.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpixmap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsharedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qshareddata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qhash.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsharedpointer_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfont.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfontmetrics.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfontinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qsizepolicy.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qcursor.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qkeysequence.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvariant.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qdebug.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtextstream.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlocale.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qset.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontiguouscache.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qurl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qurlquery.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfile.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfiledevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qvector2d.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtouchdevice.h \
+		ui_airconditionframe.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QVariant \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QAction \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qaction.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qicon.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qactiongroup.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QApplication \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qapplication.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcoreapplication.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qeventloop.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qdesktopwidget.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qguiapplication.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qinputmethod.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QButtonGroup \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qbuttongroup.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QDoubleSpinBox \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qspinbox.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractspinbox.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qvalidator.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qregularexpression.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QHBoxLayout \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qboxlayout.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qlayout.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qlayoutitem.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qgridlayout.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QHeaderView \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qheaderview.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractitemview.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractscrollarea.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qabstractitemmodel.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qitemselectionmodel.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractitemdelegate.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qstyleoption.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qslider.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractslider.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qstyle.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qtabbar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qtabwidget.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qrubberband.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QLabel \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qlabel.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QPushButton \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qpushbutton.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractbutton.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QSplitter \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qsplitter.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QVBoxLayout \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QWidget
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o airconditionframe.o airconditionframe.cpp
+
+lightframe.o: lightframe.cpp lightframe.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QFrame \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qframe.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qwidget.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobal.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qconfig.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfeatures.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsystemdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qprocessordetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcompilerdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypeinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypetraits.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsysinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlogging.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qflags.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasicatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_bootstrap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qgenericatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_msvc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv7.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv6.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv5.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_ia64.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_mips.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_x86.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_cxx11.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_gcc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_unix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobalstatic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmutex.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnumeric.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnamespace.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs_win.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstring.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qchar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrefcount.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qarraydata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringbuilder.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qalgorithms.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiterator.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearraylist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcoreevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qscopedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmetatype.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvarlengtharray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontainerfwd.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qisenum.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmargins.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpaintdevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrect.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsize.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qpoint.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpalette.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qcolor.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qrgb.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qdatastream.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiodevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qpair.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qregexp.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringmatcher.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qbrush.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvector.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qmatrix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpolygon.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qregion.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qline.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtransform.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpainterpath.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qimage.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpixelformat.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpixmap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsharedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qshareddata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qhash.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsharedpointer_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfont.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfontmetrics.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfontinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qsizepolicy.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qcursor.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qkeysequence.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvariant.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qdebug.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtextstream.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlocale.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qset.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontiguouscache.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qurl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qurlquery.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfile.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfiledevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qvector2d.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtouchdevice.h \
+		ledcontrol.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QObject \
+		ui_lightframe.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QVariant \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QAction \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qaction.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qicon.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qactiongroup.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QApplication \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qapplication.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcoreapplication.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qeventloop.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qdesktopwidget.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qguiapplication.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qinputmethod.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QButtonGroup \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qbuttongroup.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QHBoxLayout \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qboxlayout.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qlayout.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qlayoutitem.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qgridlayout.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QHeaderView \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qheaderview.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractitemview.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractscrollarea.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qabstractitemmodel.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qitemselectionmodel.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractitemdelegate.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qstyleoption.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractspinbox.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qvalidator.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qregularexpression.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qslider.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractslider.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qstyle.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qtabbar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qtabwidget.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qrubberband.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QLabel \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qlabel.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QPushButton \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qpushbutton.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractbutton.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QSplitter \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qsplitter.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QWidget
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o lightframe.o lightframe.cpp
+
+alarmframe.o: alarmframe.cpp alarmframe.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QFrame \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qframe.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qwidget.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobal.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qconfig.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfeatures.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsystemdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qprocessordetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcompilerdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypeinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypetraits.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsysinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlogging.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qflags.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasicatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_bootstrap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qgenericatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_msvc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv7.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv6.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv5.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_ia64.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_mips.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_x86.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_cxx11.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_gcc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_unix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobalstatic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmutex.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnumeric.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnamespace.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs_win.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstring.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qchar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrefcount.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qarraydata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringbuilder.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qalgorithms.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiterator.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearraylist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcoreevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qscopedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmetatype.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvarlengtharray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontainerfwd.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qisenum.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmargins.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpaintdevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrect.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsize.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qpoint.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpalette.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qcolor.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qrgb.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qdatastream.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiodevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qpair.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qregexp.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringmatcher.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qbrush.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvector.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qmatrix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpolygon.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qregion.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qline.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtransform.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpainterpath.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qimage.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpixelformat.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qpixmap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsharedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qshareddata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qhash.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsharedpointer_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfont.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfontmetrics.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qfontinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qsizepolicy.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qcursor.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qkeysequence.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvariant.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qdebug.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtextstream.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlocale.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qset.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontiguouscache.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qurl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qurlquery.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfile.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfiledevice.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qvector2d.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtouchdevice.h \
+		buzzercontrol.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QObject \
+		ui_alarmframe.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QVariant \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QAction \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qaction.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qicon.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qactiongroup.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QApplication \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qapplication.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcoreapplication.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qeventloop.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qdesktopwidget.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qguiapplication.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qinputmethod.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QButtonGroup \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qbuttongroup.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QHeaderView \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qheaderview.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractitemview.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractscrollarea.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qabstractitemmodel.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qitemselectionmodel.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractitemdelegate.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qstyleoption.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractspinbox.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qvalidator.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qregularexpression.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qslider.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractslider.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qstyle.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qtabbar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qtabwidget.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qrubberband.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QLabel \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qlabel.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QPushButton \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qpushbutton.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractbutton.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o alarmframe.o alarmframe.cpp
+
+buzzercontrol.o: buzzercontrol.cpp buzzercontrol.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QObject \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnamespace.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobal.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qconfig.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfeatures.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsystemdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qprocessordetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcompilerdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypeinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypetraits.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsysinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlogging.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qflags.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasicatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_bootstrap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qgenericatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_msvc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv7.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv6.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv5.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_ia64.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_mips.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_x86.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_cxx11.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_gcc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_unix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobalstatic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmutex.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnumeric.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstring.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qchar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrefcount.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qarraydata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringbuilder.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qalgorithms.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiterator.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearraylist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcoreevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qscopedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmetatype.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvarlengtharray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontainerfwd.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qisenum.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject_impl.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o buzzercontrol.o buzzercontrol.cpp
+
+ledcontrol.o: ledcontrol.cpp ledcontrol.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QObject \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnamespace.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobal.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qconfig.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfeatures.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsystemdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qprocessordetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcompilerdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypeinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypetraits.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsysinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlogging.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qflags.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasicatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_bootstrap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qgenericatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_msvc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv7.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv6.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv5.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_ia64.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_mips.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_x86.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_cxx11.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_gcc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_unix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobalstatic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmutex.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnumeric.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstring.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qchar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrefcount.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qarraydata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringbuilder.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qalgorithms.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiterator.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearraylist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcoreevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qscopedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmetatype.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvarlengtharray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontainerfwd.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qisenum.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject_impl.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ledcontrol.o ledcontrol.cpp
+
 qrc_image.o: qrc_image.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_image.o qrc_image.cpp
 
@@ -1094,6 +2951,30 @@ moc_mainwidget.o: moc_mainwidget.cpp
 
 moc_mainframe.o: moc_mainframe.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainframe.o moc_mainframe.cpp
+
+moc_tempframe.o: moc_tempframe.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_tempframe.o moc_tempframe.cpp
+
+moc_moistureframe.o: moc_moistureframe.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_moistureframe.o moc_moistureframe.cpp
+
+moc_smokeframe.o: moc_smokeframe.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_smokeframe.o moc_smokeframe.cpp
+
+moc_airconditionframe.o: moc_airconditionframe.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_airconditionframe.o moc_airconditionframe.cpp
+
+moc_lightframe.o: moc_lightframe.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_lightframe.o moc_lightframe.cpp
+
+moc_alarmframe.o: moc_alarmframe.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_alarmframe.o moc_alarmframe.cpp
+
+moc_buzzercontrol.o: moc_buzzercontrol.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_buzzercontrol.o moc_buzzercontrol.cpp
+
+moc_ledcontrol.o: moc_ledcontrol.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_ledcontrol.o moc_ledcontrol.cpp
 
 ####### Install
 

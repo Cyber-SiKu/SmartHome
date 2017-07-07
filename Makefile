@@ -49,10 +49,48 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = SmartHome/main.cpp \
-		SmartHome/mainwidget.cpp moc_mainwidget.cpp
+		SmartHome/mainwidget.cpp \
+		SmartHome/mainframe.cpp \
+		SmartHome/tempframe.cpp \
+		SmartHome/moistureframe.cpp \
+		SmartHome/smokeframe.cpp \
+		SmartHome/airconditionframe.cpp \
+		SmartHome/lightframe.cpp \
+		SmartHome/alarmframe.cpp \
+		SmartHome/buzzercontrol.cpp \
+		SmartHome/ledcontrol.cpp qrc_image.cpp \
+		moc_mainwidget.cpp \
+		moc_mainframe.cpp \
+		moc_tempframe.cpp \
+		moc_moistureframe.cpp \
+		moc_smokeframe.cpp \
+		moc_airconditionframe.cpp \
+		moc_lightframe.cpp \
+		moc_alarmframe.cpp \
+		moc_buzzercontrol.cpp \
+		moc_ledcontrol.cpp
 OBJECTS       = main.o \
 		mainwidget.o \
-		moc_mainwidget.o
+		mainframe.o \
+		tempframe.o \
+		moistureframe.o \
+		smokeframe.o \
+		airconditionframe.o \
+		lightframe.o \
+		alarmframe.o \
+		buzzercontrol.o \
+		ledcontrol.o \
+		qrc_image.o \
+		moc_mainwidget.o \
+		moc_mainframe.o \
+		moc_tempframe.o \
+		moc_moistureframe.o \
+		moc_smokeframe.o \
+		moc_airconditionframe.o \
+		moc_lightframe.o \
+		moc_alarmframe.o \
+		moc_buzzercontrol.o \
+		moc_ledcontrol.o
 DIST          = Qt5.8.0/5.8/gcc_64/mkspecs/features/spec_pre.prf \
 		Qt5.8.0/5.8/gcc_64/mkspecs/common/unix.conf \
 		Qt5.8.0/5.8/gcc_64/mkspecs/common/linux.conf \
@@ -203,6 +241,7 @@ DIST          = Qt5.8.0/5.8/gcc_64/mkspecs/features/spec_pre.prf \
 		Qt5.8.0/5.8/gcc_64/mkspecs/features/qt_config.prf \
 		Qt5.8.0/5.8/gcc_64/mkspecs/linux-g++/qmake.conf \
 		Qt5.8.0/5.8/gcc_64/mkspecs/features/spec_post.prf \
+		SmartHome/.qmake.stash \
 		Qt5.8.0/5.8/gcc_64/mkspecs/features/exclusive_builds.prf \
 		Qt5.8.0/5.8/gcc_64/mkspecs/features/toolchain.prf \
 		Qt5.8.0/5.8/gcc_64/mkspecs/features/default_pre.prf \
@@ -222,8 +261,27 @@ DIST          = Qt5.8.0/5.8/gcc_64/mkspecs/features/spec_pre.prf \
 		Qt5.8.0/5.8/gcc_64/mkspecs/features/exceptions.prf \
 		Qt5.8.0/5.8/gcc_64/mkspecs/features/yacc.prf \
 		Qt5.8.0/5.8/gcc_64/mkspecs/features/lex.prf \
-		SmartHome/SmartHome/SmartHome.pro SmartHome/mainwidget.h SmartHome/main.cpp \
-		SmartHome/mainwidget.cpp
+		SmartHome/SmartHome/SmartHome.pro SmartHome/mainwidget.h \
+		SmartHome/mainframe.h \
+		SmartHome/framesetting.h \
+		SmartHome/tempframe.h \
+		SmartHome/moistureframe.h \
+		SmartHome/smokeframe.h \
+		SmartHome/airconditionframe.h \
+		SmartHome/lightframe.h \
+		SmartHome/alarmframe.h \
+		SmartHome/buzzercontrol.h \
+		SmartHome/ledcontrol.h SmartHome/main.cpp \
+		SmartHome/mainwidget.cpp \
+		SmartHome/mainframe.cpp \
+		SmartHome/tempframe.cpp \
+		SmartHome/moistureframe.cpp \
+		SmartHome/smokeframe.cpp \
+		SmartHome/airconditionframe.cpp \
+		SmartHome/lightframe.cpp \
+		SmartHome/alarmframe.cpp \
+		SmartHome/buzzercontrol.cpp \
+		SmartHome/ledcontrol.cpp
 QMAKE_TARGET  = SmartHome
 DESTDIR       = 
 TARGET        = SmartHome
@@ -232,7 +290,7 @@ TARGET        = SmartHome
 first: all
 ####### Build rules
 
-$(TARGET): ui_mainwidget.h $(OBJECTS)  
+$(TARGET): ui_mainwidget.h ui_mainframe.h ui_tempframe.h ui_moistureframe.h ui_somkeframe.h ui_airconditionframe.h ui_lightframe.h ui_alarmframe.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: SmartHome/SmartHome.pro ../Qt5.8.0/5.8/gcc_64/mkspecs/features/spec_pre.prf \
@@ -385,6 +443,7 @@ Makefile: SmartHome/SmartHome.pro ../Qt5.8.0/5.8/gcc_64/mkspecs/features/spec_pr
 		../Qt5.8.0/5.8/gcc_64/mkspecs/features/qt_config.prf \
 		../Qt5.8.0/5.8/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../Qt5.8.0/5.8/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../Qt5.8.0/5.8/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../Qt5.8.0/5.8/gcc_64/mkspecs/features/toolchain.prf \
 		../Qt5.8.0/5.8/gcc_64/mkspecs/features/default_pre.prf \
@@ -405,6 +464,7 @@ Makefile: SmartHome/SmartHome.pro ../Qt5.8.0/5.8/gcc_64/mkspecs/features/spec_pr
 		../Qt5.8.0/5.8/gcc_64/mkspecs/features/yacc.prf \
 		../Qt5.8.0/5.8/gcc_64/mkspecs/features/lex.prf \
 		SmartHome/SmartHome.pro \
+		SmartHome/image.qrc \
 		../Qt5.8.0/5.8/gcc_64/lib/libQt5Widgets.prl \
 		../Qt5.8.0/5.8/gcc_64/lib/libQt5Gui.prl \
 		../Qt5.8.0/5.8/gcc_64/lib/libQt5Core.prl
@@ -559,6 +619,7 @@ Makefile: SmartHome/SmartHome.pro ../Qt5.8.0/5.8/gcc_64/mkspecs/features/spec_pr
 ../Qt5.8.0/5.8/gcc_64/mkspecs/features/qt_config.prf:
 ../Qt5.8.0/5.8/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../Qt5.8.0/5.8/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../Qt5.8.0/5.8/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../Qt5.8.0/5.8/gcc_64/mkspecs/features/toolchain.prf:
 ../Qt5.8.0/5.8/gcc_64/mkspecs/features/default_pre.prf:
@@ -579,6 +640,7 @@ Makefile: SmartHome/SmartHome.pro ../Qt5.8.0/5.8/gcc_64/mkspecs/features/spec_pr
 ../Qt5.8.0/5.8/gcc_64/mkspecs/features/yacc.prf:
 ../Qt5.8.0/5.8/gcc_64/mkspecs/features/lex.prf:
 SmartHome/SmartHome.pro:
+SmartHome/image.qrc:
 ../Qt5.8.0/5.8/gcc_64/lib/libQt5Widgets.prl:
 ../Qt5.8.0/5.8/gcc_64/lib/libQt5Gui.prl:
 ../Qt5.8.0/5.8/gcc_64/lib/libQt5Core.prl:
@@ -596,10 +658,11 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents SmartHome/image.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../Qt5.8.0/5.8/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents SmartHome/mainwidget.h $(DISTDIR)/
-	$(COPY_FILE) --parents SmartHome/main.cpp SmartHome/mainwidget.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents SmartHome/mainwidget.ui $(DISTDIR)/
+	$(COPY_FILE) --parents SmartHome/mainwidget.h SmartHome/mainframe.h SmartHome/framesetting.h SmartHome/tempframe.h SmartHome/moistureframe.h SmartHome/smokeframe.h SmartHome/airconditionframe.h SmartHome/lightframe.h SmartHome/alarmframe.h SmartHome/buzzercontrol.h SmartHome/ledcontrol.h $(DISTDIR)/
+	$(COPY_FILE) --parents SmartHome/main.cpp SmartHome/mainwidget.cpp SmartHome/mainframe.cpp SmartHome/tempframe.cpp SmartHome/moistureframe.cpp SmartHome/smokeframe.cpp SmartHome/airconditionframe.cpp SmartHome/lightframe.cpp SmartHome/alarmframe.cpp SmartHome/buzzercontrol.cpp SmartHome/ledcontrol.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents SmartHome/mainwidget.ui SmartHome/mainframe.ui SmartHome/tempframe.ui SmartHome/moistureframe.ui SmartHome/somkeframe.ui SmartHome/airconditionframe.ui SmartHome/lightframe.ui SmartHome/alarmframe.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -623,17 +686,52 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_image.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_image.cpp
+qrc_image.cpp: SmartHome/image.qrc \
+		../Qt5.8.0/5.8/gcc_64/bin/rcc \
+		SmartHome/image/running_text.png \
+		SmartHome/image/alarming_text.png \
+		SmartHome/image/server_text.png \
+		SmartHome/image/air_condition_on.png \
+		SmartHome/image/air_condition_off.png \
+		SmartHome/image/main_desk_btn_back.png \
+		SmartHome/image/lamp_btn_select.png \
+		SmartHome/image/smoke_btn.png \
+		SmartHome/image/humidity_btn.png \
+		SmartHome/image/maindesk.png \
+		SmartHome/image/temp_btn_select.png \
+		SmartHome/image/curtain_btn.png \
+		SmartHome/image/other_dev_btn.jpg \
+		SmartHome/image/air_condition_btn.png \
+		SmartHome/image/other_dev_desk.jpg \
+		SmartHome/image/smoke_btn_select.png \
+		SmartHome/image/air_condition_btn_select.png \
+		SmartHome/image/air_condition_desk.png \
+		SmartHome/image/humidity_desk.png \
+		SmartHome/image/temp_btn.png \
+		SmartHome/image/temp_desk.png \
+		SmartHome/image/camera_btn.png \
+		SmartHome/image/huminity_btn_select.png \
+		SmartHome/image/lamp_btn.png \
+		SmartHome/image/lamp_desk.png \
+		SmartHome/image/buzzer_on.ico \
+		SmartHome/image/buzzer_off.ico \
+		SmartHome/image/main_desk_line3_background.png \
+		SmartHome/image/lamp_off.png \
+		SmartHome/image/lamp_on.png
+	/home/uplooking/Qt5.8.0/5.8/gcc_64/bin/rcc -name image SmartHome/image.qrc -o qrc_image.cpp
+
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
 moc_predefs.h: ../Qt5.8.0/5.8/gcc_64/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h ../Qt5.8.0/5.8/gcc_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwidget.cpp
+compiler_moc_header_make_all: moc_mainwidget.cpp moc_mainframe.cpp moc_tempframe.cpp moc_moistureframe.cpp moc_smokeframe.cpp moc_airconditionframe.cpp moc_lightframe.cpp moc_alarmframe.cpp moc_buzzercontrol.cpp moc_ledcontrol.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwidget.cpp
+	-$(DEL_FILE) moc_mainwidget.cpp moc_mainframe.cpp moc_tempframe.cpp moc_moistureframe.cpp moc_smokeframe.cpp moc_airconditionframe.cpp moc_lightframe.cpp moc_alarmframe.cpp moc_buzzercontrol.cpp moc_ledcontrol.cpp
 moc_mainwidget.cpp: ../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QWidget \
 		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qwidget.h \
 		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -740,14 +838,909 @@ moc_mainwidget.cpp: ../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QWidget \
 		../Qt5.8.0/5.8/gcc_64/bin/moc
 	/home/uplooking/Qt5.8.0/5.8/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/uplooking/Qt5.8.0/5.8/gcc_64/mkspecs/linux-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtWidgets -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtGui -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include SmartHome/mainwidget.h -o moc_mainwidget.cpp
 
+moc_mainframe.cpp: ../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QFrame \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qframe.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtguiglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtcore-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsystemdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qprocessordetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcompilerdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypeinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsysinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlogging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qflags.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypetraits.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasicatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qgenericatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_msvc.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobalstatic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmutex.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnumeric.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qversiontagging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtgui-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qwidget.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnamespace.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstring.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qchar.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrefcount.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qarraydata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringbuilder.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qalgorithms.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiterator.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhashfunctions.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpair.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearraylist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qregexp.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringmatcher.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcoreevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qscopedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmetatype.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvarlengtharray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontainerfwd.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmargins.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpaintdevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrect.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsize.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpoint.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpalette.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcolor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgb.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgba64.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qbrush.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvector.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qmatrix.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpolygon.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qregion.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdatastream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiodevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qline.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtransform.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpainterpath.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qimage.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixelformat.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qshareddata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhash.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfont.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontmetrics.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcursor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qkeysequence.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvariant.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdebug.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtextstream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlocale.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qset.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontiguouscache.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurlquery.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfile.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfiledevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qvector2d.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtouchdevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/QTimer \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtimer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasictimer.h \
+		SmartHome/mainframe.h \
+		moc_predefs.h \
+		../Qt5.8.0/5.8/gcc_64/bin/moc
+	/home/uplooking/Qt5.8.0/5.8/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/uplooking/Qt5.8.0/5.8/gcc_64/mkspecs/linux-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtWidgets -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtGui -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include SmartHome/mainframe.h -o moc_mainframe.cpp
+
+moc_tempframe.cpp: ../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QFrame \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qframe.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtguiglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtcore-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsystemdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qprocessordetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcompilerdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypeinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsysinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlogging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qflags.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypetraits.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasicatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qgenericatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_msvc.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobalstatic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmutex.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnumeric.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qversiontagging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtgui-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qwidget.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnamespace.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstring.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qchar.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrefcount.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qarraydata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringbuilder.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qalgorithms.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiterator.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhashfunctions.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpair.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearraylist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qregexp.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringmatcher.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcoreevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qscopedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmetatype.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvarlengtharray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontainerfwd.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmargins.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpaintdevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrect.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsize.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpoint.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpalette.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcolor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgb.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgba64.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qbrush.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvector.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qmatrix.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpolygon.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qregion.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdatastream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiodevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qline.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtransform.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpainterpath.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qimage.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixelformat.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qshareddata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhash.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfont.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontmetrics.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcursor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qkeysequence.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvariant.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdebug.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtextstream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlocale.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qset.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontiguouscache.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurlquery.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfile.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfiledevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qvector2d.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtouchdevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/QTimer \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtimer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasictimer.h \
+		SmartHome/tempframe.h \
+		moc_predefs.h \
+		../Qt5.8.0/5.8/gcc_64/bin/moc
+	/home/uplooking/Qt5.8.0/5.8/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/uplooking/Qt5.8.0/5.8/gcc_64/mkspecs/linux-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtWidgets -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtGui -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include SmartHome/tempframe.h -o moc_tempframe.cpp
+
+moc_moistureframe.cpp: ../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QFrame \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qframe.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtguiglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtcore-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsystemdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qprocessordetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcompilerdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypeinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsysinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlogging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qflags.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypetraits.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasicatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qgenericatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_msvc.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobalstatic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmutex.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnumeric.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qversiontagging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtgui-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qwidget.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnamespace.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstring.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qchar.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrefcount.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qarraydata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringbuilder.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qalgorithms.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiterator.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhashfunctions.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpair.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearraylist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qregexp.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringmatcher.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcoreevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qscopedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmetatype.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvarlengtharray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontainerfwd.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmargins.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpaintdevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrect.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsize.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpoint.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpalette.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcolor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgb.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgba64.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qbrush.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvector.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qmatrix.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpolygon.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qregion.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdatastream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiodevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qline.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtransform.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpainterpath.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qimage.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixelformat.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qshareddata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhash.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfont.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontmetrics.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcursor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qkeysequence.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvariant.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdebug.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtextstream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlocale.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qset.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontiguouscache.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurlquery.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfile.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfiledevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qvector2d.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtouchdevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/QTimer \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtimer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasictimer.h \
+		SmartHome/moistureframe.h \
+		moc_predefs.h \
+		../Qt5.8.0/5.8/gcc_64/bin/moc
+	/home/uplooking/Qt5.8.0/5.8/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/uplooking/Qt5.8.0/5.8/gcc_64/mkspecs/linux-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtWidgets -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtGui -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include SmartHome/moistureframe.h -o moc_moistureframe.cpp
+
+moc_smokeframe.cpp: ../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QFrame \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qframe.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtguiglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtcore-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsystemdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qprocessordetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcompilerdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypeinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsysinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlogging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qflags.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypetraits.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasicatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qgenericatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_msvc.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobalstatic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmutex.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnumeric.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qversiontagging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtgui-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qwidget.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnamespace.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstring.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qchar.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrefcount.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qarraydata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringbuilder.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qalgorithms.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiterator.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhashfunctions.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpair.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearraylist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qregexp.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringmatcher.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcoreevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qscopedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmetatype.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvarlengtharray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontainerfwd.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmargins.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpaintdevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrect.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsize.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpoint.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpalette.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcolor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgb.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgba64.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qbrush.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvector.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qmatrix.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpolygon.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qregion.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdatastream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiodevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qline.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtransform.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpainterpath.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qimage.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixelformat.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qshareddata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhash.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfont.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontmetrics.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcursor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qkeysequence.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvariant.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdebug.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtextstream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlocale.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qset.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontiguouscache.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurlquery.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfile.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfiledevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qvector2d.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtouchdevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/QTimer \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtimer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasictimer.h \
+		SmartHome/smokeframe.h \
+		moc_predefs.h \
+		../Qt5.8.0/5.8/gcc_64/bin/moc
+	/home/uplooking/Qt5.8.0/5.8/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/uplooking/Qt5.8.0/5.8/gcc_64/mkspecs/linux-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtWidgets -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtGui -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include SmartHome/smokeframe.h -o moc_smokeframe.cpp
+
+moc_airconditionframe.cpp: ../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QFrame \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qframe.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtguiglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtcore-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsystemdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qprocessordetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcompilerdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypeinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsysinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlogging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qflags.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypetraits.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasicatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qgenericatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_msvc.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobalstatic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmutex.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnumeric.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qversiontagging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtgui-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qwidget.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnamespace.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstring.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qchar.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrefcount.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qarraydata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringbuilder.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qalgorithms.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiterator.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhashfunctions.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpair.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearraylist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qregexp.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringmatcher.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcoreevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qscopedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmetatype.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvarlengtharray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontainerfwd.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmargins.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpaintdevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrect.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsize.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpoint.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpalette.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcolor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgb.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgba64.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qbrush.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvector.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qmatrix.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpolygon.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qregion.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdatastream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiodevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qline.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtransform.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpainterpath.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qimage.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixelformat.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qshareddata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhash.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfont.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontmetrics.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcursor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qkeysequence.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvariant.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdebug.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtextstream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlocale.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qset.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontiguouscache.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurlquery.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfile.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfiledevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qvector2d.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtouchdevice.h \
+		SmartHome/airconditionframe.h \
+		moc_predefs.h \
+		../Qt5.8.0/5.8/gcc_64/bin/moc
+	/home/uplooking/Qt5.8.0/5.8/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/uplooking/Qt5.8.0/5.8/gcc_64/mkspecs/linux-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtWidgets -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtGui -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include SmartHome/airconditionframe.h -o moc_airconditionframe.cpp
+
+moc_lightframe.cpp: ../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QFrame \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qframe.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtguiglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtcore-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsystemdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qprocessordetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcompilerdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypeinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsysinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlogging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qflags.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypetraits.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasicatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qgenericatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_msvc.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobalstatic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmutex.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnumeric.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qversiontagging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtgui-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qwidget.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnamespace.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstring.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qchar.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrefcount.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qarraydata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringbuilder.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qalgorithms.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiterator.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhashfunctions.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpair.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearraylist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qregexp.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringmatcher.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcoreevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qscopedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmetatype.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvarlengtharray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontainerfwd.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmargins.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpaintdevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrect.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsize.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpoint.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpalette.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcolor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgb.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgba64.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qbrush.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvector.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qmatrix.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpolygon.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qregion.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdatastream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiodevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qline.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtransform.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpainterpath.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qimage.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixelformat.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qshareddata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhash.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfont.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontmetrics.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcursor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qkeysequence.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvariant.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdebug.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtextstream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlocale.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qset.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontiguouscache.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurlquery.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfile.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfiledevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qvector2d.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtouchdevice.h \
+		SmartHome/lightframe.h \
+		moc_predefs.h \
+		../Qt5.8.0/5.8/gcc_64/bin/moc
+	/home/uplooking/Qt5.8.0/5.8/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/uplooking/Qt5.8.0/5.8/gcc_64/mkspecs/linux-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtWidgets -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtGui -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include SmartHome/lightframe.h -o moc_lightframe.cpp
+
+moc_alarmframe.cpp: ../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QFrame \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qframe.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtguiglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtcore-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsystemdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qprocessordetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcompilerdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypeinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsysinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlogging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qflags.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypetraits.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasicatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qgenericatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_msvc.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobalstatic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmutex.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnumeric.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qversiontagging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtgui-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qwidget.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnamespace.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstring.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qchar.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrefcount.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qarraydata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringbuilder.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qalgorithms.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiterator.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhashfunctions.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpair.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearraylist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qregexp.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringmatcher.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcoreevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qscopedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmetatype.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvarlengtharray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontainerfwd.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmargins.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpaintdevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrect.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsize.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpoint.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpalette.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcolor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgb.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgba64.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qbrush.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvector.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qmatrix.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpolygon.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qregion.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdatastream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiodevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qline.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtransform.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpainterpath.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qimage.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixelformat.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qshareddata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhash.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfont.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontmetrics.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcursor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qkeysequence.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvariant.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdebug.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtextstream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlocale.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qset.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontiguouscache.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurlquery.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfile.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfiledevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qvector2d.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtouchdevice.h \
+		SmartHome/alarmframe.h \
+		moc_predefs.h \
+		../Qt5.8.0/5.8/gcc_64/bin/moc
+	/home/uplooking/Qt5.8.0/5.8/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/uplooking/Qt5.8.0/5.8/gcc_64/mkspecs/linux-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtWidgets -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtGui -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include SmartHome/alarmframe.h -o moc_alarmframe.cpp
+
+moc_buzzercontrol.cpp: ../Qt5.8.0/5.8/gcc_64/include/QtCore/QObject \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnamespace.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtcore-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsystemdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qprocessordetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcompilerdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypeinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsysinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlogging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qflags.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypetraits.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasicatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qgenericatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_msvc.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobalstatic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmutex.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnumeric.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qversiontagging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstring.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qchar.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrefcount.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qarraydata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringbuilder.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qalgorithms.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiterator.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhashfunctions.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpair.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearraylist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qregexp.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringmatcher.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcoreevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qscopedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmetatype.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvarlengtharray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontainerfwd.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject_impl.h \
+		SmartHome/buzzercontrol.h \
+		moc_predefs.h \
+		../Qt5.8.0/5.8/gcc_64/bin/moc
+	/home/uplooking/Qt5.8.0/5.8/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/uplooking/Qt5.8.0/5.8/gcc_64/mkspecs/linux-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtWidgets -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtGui -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include SmartHome/buzzercontrol.h -o moc_buzzercontrol.cpp
+
+moc_ledcontrol.cpp: ../Qt5.8.0/5.8/gcc_64/include/QtCore/QObject \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnamespace.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtcore-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsystemdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qprocessordetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcompilerdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypeinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsysinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlogging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qflags.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypetraits.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasicatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qgenericatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_msvc.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobalstatic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmutex.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnumeric.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qversiontagging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstring.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qchar.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrefcount.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qarraydata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringbuilder.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qalgorithms.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiterator.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhashfunctions.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpair.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearraylist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qregexp.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringmatcher.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcoreevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qscopedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmetatype.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvarlengtharray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontainerfwd.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject_impl.h \
+		SmartHome/ledcontrol.h \
+		moc_predefs.h \
+		../Qt5.8.0/5.8/gcc_64/bin/moc
+	/home/uplooking/Qt5.8.0/5.8/gcc_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/home/uplooking/Qt5.8.0/5.8/gcc_64/mkspecs/linux-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtWidgets -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtGui -I/home/uplooking/Qt5.8.0/5.8/gcc_64/include/QtCore -I. -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include SmartHome/ledcontrol.h -o moc_ledcontrol.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwidget.h
+compiler_uic_make_all: ui_mainwidget.h ui_mainframe.h ui_tempframe.h ui_moistureframe.h ui_somkeframe.h ui_airconditionframe.h ui_lightframe.h ui_alarmframe.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwidget.h
+	-$(DEL_FILE) ui_mainwidget.h ui_mainframe.h ui_tempframe.h ui_moistureframe.h ui_somkeframe.h ui_airconditionframe.h ui_lightframe.h ui_alarmframe.h
 ui_mainwidget.h: SmartHome/mainwidget.ui \
 		../Qt5.8.0/5.8/gcc_64/bin/uic
 	/home/uplooking/Qt5.8.0/5.8/gcc_64/bin/uic SmartHome/mainwidget.ui -o ui_mainwidget.h
+
+ui_mainframe.h: SmartHome/mainframe.ui \
+		../Qt5.8.0/5.8/gcc_64/bin/uic
+	/home/uplooking/Qt5.8.0/5.8/gcc_64/bin/uic SmartHome/mainframe.ui -o ui_mainframe.h
+
+ui_tempframe.h: SmartHome/tempframe.ui \
+		../Qt5.8.0/5.8/gcc_64/bin/uic
+	/home/uplooking/Qt5.8.0/5.8/gcc_64/bin/uic SmartHome/tempframe.ui -o ui_tempframe.h
+
+ui_moistureframe.h: SmartHome/moistureframe.ui \
+		../Qt5.8.0/5.8/gcc_64/bin/uic
+	/home/uplooking/Qt5.8.0/5.8/gcc_64/bin/uic SmartHome/moistureframe.ui -o ui_moistureframe.h
+
+ui_somkeframe.h: SmartHome/somkeframe.ui \
+		../Qt5.8.0/5.8/gcc_64/bin/uic
+	/home/uplooking/Qt5.8.0/5.8/gcc_64/bin/uic SmartHome/somkeframe.ui -o ui_somkeframe.h
+
+ui_airconditionframe.h: SmartHome/airconditionframe.ui \
+		../Qt5.8.0/5.8/gcc_64/bin/uic
+	/home/uplooking/Qt5.8.0/5.8/gcc_64/bin/uic SmartHome/airconditionframe.ui -o ui_airconditionframe.h
+
+ui_lightframe.h: SmartHome/lightframe.ui \
+		../Qt5.8.0/5.8/gcc_64/bin/uic
+	/home/uplooking/Qt5.8.0/5.8/gcc_64/bin/uic SmartHome/lightframe.ui -o ui_lightframe.h
+
+ui_alarmframe.h: SmartHome/alarmframe.ui \
+		../Qt5.8.0/5.8/gcc_64/bin/uic
+	/home/uplooking/Qt5.8.0/5.8/gcc_64/bin/uic SmartHome/alarmframe.ui -o ui_alarmframe.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -755,7 +1748,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
@@ -867,7 +1860,9 @@ main.o: SmartHome/main.cpp SmartHome/mainwidget.h \
 		../Qt5.8.0/5.8/gcc_64/include/QtCore/qeventloop.h \
 		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		../Qt5.8.0/5.8/gcc_64/include/QtGui/qguiapplication.h \
-		../Qt5.8.0/5.8/gcc_64/include/QtGui/qinputmethod.h
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qinputmethod.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/QFontDatabase \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontdatabase.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o SmartHome/main.cpp
 
 mainwidget.o: SmartHome/mainwidget.cpp SmartHome/mainwidget.h \
@@ -972,12 +1967,956 @@ mainwidget.o: SmartHome/mainwidget.cpp SmartHome/mainwidget.h \
 		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfiledevice.h \
 		../Qt5.8.0/5.8/gcc_64/include/QtGui/qvector2d.h \
 		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtouchdevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QMessageBox \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qmessagebox.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qdialog.h \
 		../Qt5.8.0/5.8/gcc_64/include/QtGui/QPixmap \
-		ui_mainwidget.h
+		SmartHome/airconditionframe.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QFrame \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qframe.h \
+		SmartHome/alarmframe.h \
+		SmartHome/framesetting.h \
+		SmartHome/lightframe.h \
+		SmartHome/mainframe.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/QTimer \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtimer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasictimer.h \
+		SmartHome/moistureframe.h \
+		SmartHome/smokeframe.h \
+		SmartHome/tempframe.h \
+		ui_mainwidget.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/QVariant \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QAction \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qaction.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qicon.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qactiongroup.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QApplication \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qapplication.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcoreapplication.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qeventloop.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qguiapplication.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qinputmethod.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QButtonGroup \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QHeaderView \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qheaderview.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qstyleoption.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qvalidator.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qregularexpression.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qslider.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qabstractslider.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qstyle.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtabbar.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtabwidget.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qrubberband.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QPushButton \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qpushbutton.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QSplitter \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qsplitter.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwidget.o SmartHome/mainwidget.cpp
+
+mainframe.o: SmartHome/mainframe.cpp SmartHome/mainframe.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QFrame \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qframe.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtguiglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtcore-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsystemdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qprocessordetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcompilerdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypeinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsysinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlogging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qflags.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypetraits.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasicatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qgenericatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_msvc.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobalstatic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmutex.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnumeric.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qversiontagging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtgui-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qwidget.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnamespace.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstring.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qchar.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrefcount.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qarraydata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringbuilder.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qalgorithms.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiterator.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhashfunctions.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpair.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearraylist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qregexp.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringmatcher.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcoreevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qscopedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmetatype.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvarlengtharray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontainerfwd.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmargins.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpaintdevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrect.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsize.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpoint.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpalette.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcolor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgb.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgba64.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qbrush.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvector.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qmatrix.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpolygon.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qregion.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdatastream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiodevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qline.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtransform.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpainterpath.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qimage.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixelformat.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qshareddata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhash.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfont.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontmetrics.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcursor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qkeysequence.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvariant.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdebug.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtextstream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlocale.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qset.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontiguouscache.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurlquery.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfile.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfiledevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qvector2d.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtouchdevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/QTimer \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtimer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasictimer.h \
+		ui_mainframe.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/QDateTime \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdatetime.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainframe.o SmartHome/mainframe.cpp
+
+tempframe.o: SmartHome/tempframe.cpp SmartHome/tempframe.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QFrame \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qframe.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtguiglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtcore-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsystemdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qprocessordetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcompilerdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypeinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsysinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlogging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qflags.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypetraits.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasicatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qgenericatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_msvc.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobalstatic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmutex.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnumeric.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qversiontagging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtgui-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qwidget.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnamespace.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstring.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qchar.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrefcount.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qarraydata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringbuilder.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qalgorithms.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiterator.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhashfunctions.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpair.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearraylist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qregexp.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringmatcher.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcoreevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qscopedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmetatype.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvarlengtharray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontainerfwd.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmargins.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpaintdevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrect.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsize.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpoint.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpalette.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcolor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgb.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgba64.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qbrush.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvector.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qmatrix.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpolygon.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qregion.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdatastream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiodevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qline.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtransform.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpainterpath.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qimage.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixelformat.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qshareddata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhash.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfont.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontmetrics.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcursor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qkeysequence.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvariant.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdebug.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtextstream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlocale.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qset.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontiguouscache.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurlquery.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfile.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfiledevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qvector2d.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtouchdevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/QTimer \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtimer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasictimer.h \
+		ui_tempframe.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tempframe.o SmartHome/tempframe.cpp
+
+moistureframe.o: SmartHome/moistureframe.cpp SmartHome/moistureframe.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QFrame \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qframe.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtguiglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtcore-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsystemdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qprocessordetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcompilerdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypeinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsysinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlogging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qflags.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypetraits.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasicatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qgenericatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_msvc.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobalstatic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmutex.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnumeric.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qversiontagging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtgui-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qwidget.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnamespace.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstring.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qchar.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrefcount.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qarraydata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringbuilder.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qalgorithms.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiterator.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhashfunctions.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpair.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearraylist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qregexp.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringmatcher.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcoreevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qscopedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmetatype.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvarlengtharray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontainerfwd.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmargins.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpaintdevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrect.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsize.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpoint.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpalette.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcolor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgb.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgba64.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qbrush.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvector.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qmatrix.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpolygon.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qregion.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdatastream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiodevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qline.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtransform.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpainterpath.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qimage.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixelformat.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qshareddata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhash.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfont.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontmetrics.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcursor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qkeysequence.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvariant.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdebug.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtextstream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlocale.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qset.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontiguouscache.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurlquery.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfile.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfiledevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qvector2d.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtouchdevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/QTimer \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtimer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasictimer.h \
+		ui_moistureframe.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moistureframe.o SmartHome/moistureframe.cpp
+
+smokeframe.o: SmartHome/smokeframe.cpp SmartHome/smokeframe.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QFrame \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qframe.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtguiglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtcore-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsystemdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qprocessordetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcompilerdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypeinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsysinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlogging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qflags.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypetraits.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasicatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qgenericatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_msvc.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobalstatic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmutex.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnumeric.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qversiontagging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtgui-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qwidget.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnamespace.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstring.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qchar.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrefcount.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qarraydata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringbuilder.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qalgorithms.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiterator.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhashfunctions.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpair.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearraylist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qregexp.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringmatcher.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcoreevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qscopedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmetatype.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvarlengtharray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontainerfwd.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmargins.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpaintdevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrect.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsize.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpoint.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpalette.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcolor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgb.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgba64.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qbrush.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvector.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qmatrix.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpolygon.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qregion.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdatastream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiodevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qline.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtransform.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpainterpath.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qimage.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixelformat.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qshareddata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhash.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfont.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontmetrics.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcursor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qkeysequence.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvariant.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdebug.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtextstream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlocale.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qset.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontiguouscache.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurlquery.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfile.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfiledevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qvector2d.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtouchdevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/QTimer \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtimer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasictimer.h \
+		ui_somkeframe.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o smokeframe.o SmartHome/smokeframe.cpp
+
+airconditionframe.o: SmartHome/airconditionframe.cpp SmartHome/airconditionframe.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QFrame \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qframe.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtguiglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtcore-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsystemdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qprocessordetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcompilerdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypeinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsysinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlogging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qflags.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypetraits.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasicatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qgenericatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_msvc.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobalstatic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmutex.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnumeric.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qversiontagging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtgui-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qwidget.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnamespace.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstring.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qchar.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrefcount.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qarraydata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringbuilder.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qalgorithms.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiterator.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhashfunctions.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpair.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearraylist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qregexp.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringmatcher.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcoreevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qscopedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmetatype.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvarlengtharray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontainerfwd.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmargins.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpaintdevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrect.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsize.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpoint.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpalette.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcolor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgb.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgba64.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qbrush.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvector.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qmatrix.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpolygon.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qregion.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdatastream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiodevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qline.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtransform.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpainterpath.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qimage.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixelformat.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qshareddata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhash.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfont.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontmetrics.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcursor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qkeysequence.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvariant.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdebug.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtextstream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlocale.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qset.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontiguouscache.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurlquery.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfile.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfiledevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qvector2d.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtouchdevice.h \
+		ui_airconditionframe.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o airconditionframe.o SmartHome/airconditionframe.cpp
+
+lightframe.o: SmartHome/lightframe.cpp SmartHome/lightframe.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QFrame \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qframe.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtguiglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtcore-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsystemdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qprocessordetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcompilerdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypeinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsysinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlogging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qflags.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypetraits.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasicatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qgenericatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_msvc.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobalstatic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmutex.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnumeric.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qversiontagging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtgui-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qwidget.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnamespace.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstring.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qchar.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrefcount.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qarraydata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringbuilder.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qalgorithms.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiterator.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhashfunctions.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpair.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearraylist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qregexp.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringmatcher.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcoreevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qscopedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmetatype.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvarlengtharray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontainerfwd.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmargins.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpaintdevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrect.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsize.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpoint.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpalette.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcolor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgb.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgba64.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qbrush.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvector.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qmatrix.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpolygon.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qregion.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdatastream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiodevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qline.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtransform.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpainterpath.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qimage.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixelformat.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qshareddata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhash.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfont.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontmetrics.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcursor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qkeysequence.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvariant.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdebug.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtextstream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlocale.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qset.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontiguouscache.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurlquery.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfile.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfiledevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qvector2d.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtouchdevice.h \
+		SmartHome/ledcontrol.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/QObject \
+		ui_lightframe.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o lightframe.o SmartHome/lightframe.cpp
+
+alarmframe.o: SmartHome/alarmframe.cpp SmartHome/alarmframe.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QFrame \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qframe.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtguiglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtcore-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsystemdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qprocessordetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcompilerdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypeinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsysinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlogging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qflags.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypetraits.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasicatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qgenericatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_msvc.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobalstatic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmutex.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnumeric.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qversiontagging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtgui-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qwidget.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnamespace.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstring.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qchar.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrefcount.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qarraydata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringbuilder.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qalgorithms.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiterator.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhashfunctions.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpair.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearraylist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qregexp.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringmatcher.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcoreevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qscopedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmetatype.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvarlengtharray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontainerfwd.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmargins.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpaintdevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrect.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsize.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpoint.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpalette.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcolor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgb.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qrgba64.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qbrush.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvector.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qmatrix.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpolygon.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qregion.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdatastream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiodevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qline.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtransform.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpainterpath.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qimage.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixelformat.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qpixmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qshareddata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhash.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfont.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontmetrics.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qfontinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qcursor.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qkeysequence.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvariant.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qdebug.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtextstream.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlocale.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qset.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontiguouscache.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qurlquery.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfile.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qfiledevice.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qvector2d.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtGui/qtouchdevice.h \
+		SmartHome/buzzercontrol.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/QObject \
+		ui_alarmframe.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o alarmframe.o SmartHome/alarmframe.cpp
+
+buzzercontrol.o: SmartHome/buzzercontrol.cpp SmartHome/buzzercontrol.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/QObject \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnamespace.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtcore-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsystemdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qprocessordetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcompilerdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypeinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsysinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlogging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qflags.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypetraits.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasicatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qgenericatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_msvc.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobalstatic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmutex.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnumeric.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qversiontagging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstring.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qchar.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrefcount.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qarraydata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringbuilder.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qalgorithms.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiterator.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhashfunctions.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpair.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearraylist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qregexp.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringmatcher.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcoreevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qscopedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmetatype.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvarlengtharray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontainerfwd.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject_impl.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o buzzercontrol.o SmartHome/buzzercontrol.cpp
+
+ledcontrol.o: SmartHome/ledcontrol.cpp SmartHome/ledcontrol.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/QObject \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnamespace.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobal.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qconfig.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtcore-config.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsystemdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qprocessordetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcompilerdetection.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypeinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qsysinfo.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlogging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qflags.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qtypetraits.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbasicatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qgenericatomic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qatomic_msvc.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qglobalstatic.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmutex.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qnumeric.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qversiontagging.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstring.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qchar.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qrefcount.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qarraydata.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringbuilder.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qalgorithms.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qiterator.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qhashfunctions.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qpair.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qbytearraylist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringlist.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qregexp.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qstringmatcher.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcoreevent.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qscopedpointer.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qmetatype.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qvarlengtharray.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qcontainerfwd.h \
+		../Qt5.8.0/5.8/gcc_64/include/QtCore/qobject_impl.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ledcontrol.o SmartHome/ledcontrol.cpp
+
+qrc_image.o: qrc_image.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_image.o qrc_image.cpp
 
 moc_mainwidget.o: moc_mainwidget.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwidget.o moc_mainwidget.cpp
+
+moc_mainframe.o: moc_mainframe.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainframe.o moc_mainframe.cpp
+
+moc_tempframe.o: moc_tempframe.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_tempframe.o moc_tempframe.cpp
+
+moc_moistureframe.o: moc_moistureframe.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_moistureframe.o moc_moistureframe.cpp
+
+moc_smokeframe.o: moc_smokeframe.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_smokeframe.o moc_smokeframe.cpp
+
+moc_airconditionframe.o: moc_airconditionframe.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_airconditionframe.o moc_airconditionframe.cpp
+
+moc_lightframe.o: moc_lightframe.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_lightframe.o moc_lightframe.cpp
+
+moc_alarmframe.o: moc_alarmframe.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_alarmframe.o moc_alarmframe.cpp
+
+moc_buzzercontrol.o: moc_buzzercontrol.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_buzzercontrol.o moc_buzzercontrol.cpp
+
+moc_ledcontrol.o: moc_ledcontrol.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_ledcontrol.o moc_ledcontrol.cpp
 
 ####### Install
 
