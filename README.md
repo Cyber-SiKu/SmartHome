@@ -1,7 +1,7 @@
 # SmartHome
 
 ```
-方案一：
+  方案一：
     智能开关(单片机) wifi
     控制端  手机、平板等移动设备
 
@@ -126,7 +126,7 @@ phone----->yeelink---->laptop
 > 3. 传感器ID  sensor
 
 # QT multithreaded programming
->	1. QT默认有一个线程，叫做主线程/UI线程 \
+>	1. QT 默认有一个线程，叫做主线程/UI线程 \
 >         UI的作用是绘制图形界面 \
 >       	所以在UI线程中不能睡眠，不能阻塞，不能死循环
 
@@ -152,77 +152,92 @@ arm-linux-*
 		tar -xvf arm-linux-gcc-4.5.1.tar.bz2
 		cd 4.5.1/bin/
 		pwd
-		复制路径,然后添加PATH环境变量
+```
+> copy path add to $PATH
+```
 		vim ~/.bashrc
-		在最后一行添加
-		PATH=/home/zyli/s5p6818sdk_lzy1/package/4.5.1/bin:$PATH
+```
+> add follow as \
+> PATH=/home/zyli/s5p6818sdk_lzy1/package/4.5.1/bin:$PATH
 
-		如果终端是在添加PATH环境变量之前打开的，则需要source ~/.bashrc
+>	if we open terminal before add $PATH,we need to
+```
+source ~/.bashrc
+```
 
-		测试：
+> test
+```
 		touch hello.c
 		arm-linux-gcc hello.c -o hello
 		file hello
 ```
-	2.QT程序
+
+## 3. QT code
+```
 		qmake make
 		sudo mkdir /home/zyli/
 		sudo chown uplooking:uplooking /home/zyli
 		mkdir /home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output -p
 		tar -xvf host.tar.bz2 -C /home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output
-
-		测试：运行如下命令
+```
+>	Test
+```
 		/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/qmake -v
-
-		用QTCreator创建一个工程(/home/zyli/bhht/armqt)
+```
+> QTCreator create a project (/home/zyli/bhht/armqt)
+```
 		cd /home/zyli/bhht/armqt
 		/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/qmake
 		make
 		file armqt
+```
 
+>ways to copy programe to board
+>* tftp
+>* nfs
+>* ftp
+>* uart
+>
+>	> use serial
+>	>1. 配置文件路径
+> >
+> > ```
+> >sudo minicom -s
+>	>    ->Filenames and paths
+> >            ->B - Upload directory   : /home/zyli/bhht
+>	>   ->Save setup as dfl
+> >```
+>	2. entry in board terminal
+>
+> start the board
+>```
+>sudo minicom
+>```
+> 3. download file
+>```
+>	ctrl+a--->s
+>	 ->zmodem
+>	[Goto] choice the directory
+>	[Okay] choice the file
+> ```
 
-把交叉编译完成的程序拷贝开发板运行
-	1.tftp
-	2.nfs
-	3.ftp
-	4.uart
+## nfs
 
-
-	使用串口下载程序步骤
-	1.配置文件路径
-	sudo minicom -s
-	 ->Filenames and paths
-            ->B - Upload directory   : /home/zyli/bhht
-	 ->Save setup as dfl
-
-	2.进入开发板终端
-	启动开发板
-	sudo minicom
-
-	3.下载文件
-	ctrl+a--->s
-	 ->zmodem
-	[Goto] 选择要进入的目录
-	[Okay] 选择要下载的文件
-
-
-	使用nfs下载程序
-	1.利用网络管理器配置PC IP
-	  统一添加配置bhht，IP=192.168.2.5 子网掩码:24
-	  以后如果电脑要连板子的话就选择bhht设置
-	2.查看IP
-	  [root@PC]# ifconfig
-	3.配置nfs服务
-	4.配置开发板IP
-	  [root@X6818]# ifconfig eth0 192.168.2.6
-	  [root@X6818]# ping 192.168.2.5
-	5.开发板挂在PC的共享目录
-	  [root@X6818]# mount -t nfs -o nolock,rw 192.168.2.5:/abc /mnt
-	  然后开发板就能看到PC上的文件
-	6.在PC上把要共享给开发板的文件拷贝到/abc
-	  [root@PC]# cp <path>/armqt <path>/hello /abc
-	7.在开发板上使用共享文件
-	  [root@X6818]# /mnt/hello
-	  [root@X6818]# /mnt/armqt
-	8.在不使用共享目录的时候需要卸载
-	  [root@X6818]# umount /mnt
+	1. set PC IP
+	  add profile bhht:IP=192.168.2.5 24
+	  if you want to connect to board use bhht
+	2. check IP
+	  ifconfig
+	3. open nfs server
+	4. set board IP
+	  ifconfig eth0 192.168.2.6
+	  ping 192.168.2.5
+	5. bord mount PC sharing directory
+	   mount -t nfs -o nolock,rw 192.168.2.5:/abc /mnt
+	6. copy files  you want to share to /abc
+	   cp <path>/armqt <path>/hello /abc
+	7. use sharefile(just example)
+	   /mnt/hello
+	   /mnt/armqt
+	8. umount
+	   umount /mnt
