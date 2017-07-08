@@ -24,10 +24,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        widget.cpp \
-    getstatuethread.cpp
+		widget.cpp \
+	getstatuethread.cpp
 
 HEADERS  += widget.h \
-    getstatuethread.h
+	getstatuethread.h
 
 FORMS    += widget.ui
+
+QT_LOGGING_RULES=qt.network.ssl.warning=false
