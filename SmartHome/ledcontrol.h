@@ -9,6 +9,7 @@ public:
   explicit LedControl(QObject *parent = 0);
   void ledOn(int i);
   void ledOff(int i);
+  void ledControl(int i, int state);
 
 signals:
 

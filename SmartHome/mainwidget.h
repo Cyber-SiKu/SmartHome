@@ -35,6 +35,8 @@ private slots:
 
   void on_exitButton_clicked();
 
+  void getSatesSignalHandler(int id, int state);
+
 private:
   Ui::MainWidget *ui;
 };

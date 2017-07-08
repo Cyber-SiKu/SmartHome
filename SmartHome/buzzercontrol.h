@@ -11,6 +11,8 @@ public:
   void buzzerOn();
 
   void buzzerOff();
+
+  void buzzerControl(int state);
 signals:
 
 public slots:

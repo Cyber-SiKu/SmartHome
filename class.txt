@@ -183,14 +183,127 @@ QT多线程编程
 	8.在不使用共享目录的时候需要卸载
 	  [root@X6818]# umount /mnt	
 
-	
-	 
+智能家居项目之搭建界面
+	该部分由学员自己完成	
+
+设置程序自启动
+	[root@X6818]# vi /etc/init.d/S99qttest
+	case "$1" in                                                     
+  	start)                                                         
+  	      echo "Starting qttest..."                                
+14  	      #/usr/share/demo/qttest &                                
+15  	      SmartHome &                                              
+  	      ;;                          
+  	stop)                             
+  	      echo -n "Stopping qttest..."
+  	      ;;                          
+  	restart|reload)                            
+  	      "$0" stop                            
+  	      "$0" start                           
+  	      ;;                                   
+  	*)           
+
+在用户态操作硬件
+	shell命令行操作：
+	[root@X6818]# echo 1 > /sys/devices/platform/x6818-beep/state
+	[root@X6818]# echo 0 > /sys/devices/platform/x6818-beep/state
+	[root@X6818]# echo 1 > /sys/devices/platform/leds-gpio/leds/led1/brightness
+	[root@X6818]# echo 0 > /sys/devices/platform/leds-gpio/leds/led1/brightness
+	程序中操作
+	system("echo 1 > /sys/devices/platform/x6818-beep/state");
 
 	
+手机app远程控制板子
+	1.libyeelink_lzy.so ------------> X86
+	2.libyeelink_lzy.so ------------> arm
+
+	zyli@embsky:/abc$ arm-linux-g++ ledyeelink.cpp -o ledyeelink -L ./ -lyeelink_lzy
+	-L 指定动态库的位置
+	-l 指定动态库的名字
+
 	
+	把libyeelink_lzy.so拷贝到开发板的/lib
+	把ledyeelink拷贝到开发板的/bin
+	
+	在开发板上执行如下语句：
+	[root@X6818:~]# mount -t nfs -o nolock,rw 192.168.100.53:/abc /mnt/
+	[root@X6818:~]# cp /mnt/ledyeelink /bin/
+	[root@X6818:~]# cp /mnt/libyeelink_lzy.so  /lib
+	
+	[root@X6818:~]# ifconfig 
+	开发板默认是自动获取IP的，如果没有获取到，则需要手动启动dhcp来获取IP
+	前提是开发板连接能过连外网的网线
+	[root@X6818:~]# /etc/init.d/S40network restart
+
+	在板子上执行程序，然后用手机app控制
+	[root@X6818:~]# ledyeelink
+	
+用手机上的4个开关控制板子上的4个灯
+	该部分由学生自己完成	
 
 
+在嵌入式QT中使用libyeelink_lzy.so
+	1.打开SmartHome工程
+	2.在工程管理文件中添加
+		QT       += core gui network
+		INCLUDEPATH += /abc
+		LIBS += -L /abc -lyeelink_lzy
+	3.新建一个线程
+		GetStateThread:QThread
+		在getstatethread.h中添加：#include "QThread"
+		#ifndef GETSTATETHREAD_H
+		#define GETSTATETHREAD_H
+		
+		#include "QThread"
+		
+		class GetStateThread : public QThread
+		{
+		public:
+		    GetStateThread();
+		signals:
+		    void stateSignal(int state);
+		private:
+		    void run();
+		};
+		
+		#endif // GETSTATETHREAD_H	
 
+		实现：
+		#include "getstatethread.h"
+		#include "yeelink_lzy.h"
+		#include "QDebug"
+		
+		extern "C" {
+		#include "unistd.h"
+		}
+		
+		GetStateThread::GetStateThread()
+		{
+		
+		}
+		
+		void GetStateThread::run()
+		{
+		    while (1) {
+		        int ret = get_sensor_status("118.190.25.51", "359638", "409822", "cc18f9d60f96f69d2465a34258dcd485");
+		        if (ret < 0) {
+		            qDebug() << "get sensor state error";
+		            continue;
+		        }
+		        if (ret) {
+		            emit stateSignal(1);
+		        } else {
+		            emit stateSignal(0);
+		        }
+		        sleep(1);
+		    }
+		}
+
+		在主线程中创建新线程
+			该部分由学员自行编写
+	
+QT5 web编程
+	
 
 
 

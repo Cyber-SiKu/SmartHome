@@ -3,13 +3,23 @@
 #include "QPixmap"
 #include "airconditionframe.h"
 #include "alarmframe.h"
+#include "buzzercontrol.h"
 #include "framesetting.h"
+#include "getstatuethread.h"
+#include "getstatuethread.h"
+#include "ledcontrol.h"
 #include "lightframe.h"
 #include "mainframe.h"
 #include "moistureframe.h"
 #include "smokeframe.h"
 #include "tempframe.h"
 #include "ui_mainwidget.h"
+#include <QDebug>
+#include <typeinfo>
+
+extern "C" {
+#include <stdio.h>
+}
 
 MainWidget::MainWidget(QWidget *parent)
     : QWidget(parent), ui(new Ui::MainWidget) {
@@ -19,11 +29,17 @@ MainWidget::MainWidget(QWidget *parent)
   ui->frame = new MainFrame(this);
   ui->frame->setGeometry(FRAME_X, FRAME_Y, FRAME_WIDTH, FRAME_HEIGHT);
   connect(this, SIGNAL(PushButtonUpdate()), this, SLOT(updatePushButton()));
+
+  GetStatueThread *gt = new GetStatueThread();
+  gt->start();
+  connect(gt, SIGNAL(statueSignal(int, int)), this,
+          SLOT(getSatesSignalHandler(int, int)));
 }
 
 MainWidget::~MainWidget() { delete ui; }
 
 void MainWidget::updatePushButton() {
+
   ui->tempButton->setStyleSheet(
       "border-image: url(:/mainWidget/image/temp_btn.png)");
   ui->moistureButton->setStyleSheet(
@@ -117,4 +133,31 @@ void MainWidget::on_returnButto_clicked() {
 void MainWidget::on_exitButton_clicked() {
   QMessageBox::information(this, QString("正在退出"), QString("好再来您嫩!"));
   exit(0);
+}
+
+void MainWidget::getSatesSignalHandler(int id, int state) {
+  BuzzerControl bc;
+  LedControl lc;
+  switch (id) {
+  case BUZZER:
+    bc.buzzerControl(state);
+    break;
+  case BEDROOMLED:
+  case PARLOURLED:
+  case KITCHENLED:
+    lc.ledControl(id, state);
+    break;
+  default:
+    fprintf(stderr, "%s\n", "undefined device!");
+    fflush(stderr);
+    break;
+  }
+
+  //动态类型检查 判断当前界面是否为照明界面
+  try {
+    LightFrame &lf = dynamic_cast<LightFrame &>(*ui->frame);
+    lf.update();
+    qDebug() << "照明界面";
+  } catch (std::bad_cast &) {
+  }
 }

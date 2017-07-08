@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2017-07-06T14:43:57
+# Project created by QtCreator 2017-07-08T15:32:00
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = SmartHome
+TARGET = Web
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -24,48 +24,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-		mainwidget.cpp \
-	mainframe.cpp \
-    tempframe.cpp \
-    moistureframe.cpp \
-    smokeframe.cpp \
-    airconditionframe.cpp \
-    lightframe.cpp \
-    alarmframe.cpp \
-    buzzercontrol.cpp \
-    ledcontrol.cpp \
+        widget.cpp \
     getstatuethread.cpp
 
-HEADERS  += mainwidget.h \
-	mainframe.h \
-    framesetting.h \
-    tempframe.h \
-    moistureframe.h \
-    smokeframe.h \
-    airconditionframe.h \
-    lightframe.h \
-    alarmframe.h \
-    buzzercontrol.h \
-    ledcontrol.h \
-    getstatuethread.h \
-    devicessetting.h
+HEADERS  += widget.h \
+    getstatuethread.h
 
-FORMS    += mainwidget.ui \
-	mainframe.ui \
-    tempframe.ui \
-    moistureframe.ui \
-    somkeframe.ui \
-    airconditionframe.ui \
-    lightframe.ui \
-    alarmframe.ui
-
-RESOURCES += \
-	image.qrc
-
-INCLUDEPATH += /siku
-
-LIBS += -L/siku \
-        -lyeelink_lzy
-
-
-QMAKE_CXXFLAGS += -std=c++11
+FORMS    += widget.ui

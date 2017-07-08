@@ -12,10 +12,10 @@ MAKEFILE      = Makefile
 
 CC            = /home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/arm-cortex_a9-linux-gnueabi-gcc
 CXX           = /home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/arm-cortex_a9-linux-gnueabi-g++
-DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -Os --sysroot=/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot -O2 -Wall -W -D_REENTRANT -fPIE $(DEFINES)
-CXXFLAGS      = -pipe -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -Os --sysroot=/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot -O2 -O3 -Wall -W -D_REENTRANT -fPIE $(DEFINES)
-INCPATH       = -I. -I../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I. -I. -I../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++
+CXXFLAGS      = -pipe -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -Os --sysroot=/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot -std=c++11 -O2 -O3 -Wall -W -D_REENTRANT -fPIE $(DEFINES)
+INCPATH       = -I. -I/siku -I../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtNetwork -I../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I. -I. -I../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++
 QMAKE         = /home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -36,7 +36,7 @@ DISTNAME      = SmartHome1.0.0
 DISTDIR = /home/uplooking/SmartHome/SmartHome/.tmp/SmartHome1.0.0
 LINK          = /home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/arm-cortex_a9-linux-gnueabi-g++
 LFLAGS        = --sysroot=/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot -Wl,-O1
-LIBS          = $(SUBLIBS) -L/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/lib -lQt5Widgets -lQt5Gui -lQt5Core -lrt -ldl -lpthread 
+LIBS          = $(SUBLIBS) -L/siku -lyeelink_lzy -L/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/lib -lQt5Widgets -lQt5Gui -lQt5Network -lQt5Core -lrt -ldl -lpthread 
 AR            = /home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/arm-cortex_a9-linux-gnueabi-ar cqs
 RANLIB        = 
 SED           = sed
@@ -58,7 +58,8 @@ SOURCES       = main.cpp \
 		lightframe.cpp \
 		alarmframe.cpp \
 		buzzercontrol.cpp \
-		ledcontrol.cpp qrc_image.cpp \
+		ledcontrol.cpp \
+		getstatuethread.cpp qrc_image.cpp \
 		moc_mainwidget.cpp \
 		moc_mainframe.cpp \
 		moc_tempframe.cpp \
@@ -68,7 +69,8 @@ SOURCES       = main.cpp \
 		moc_lightframe.cpp \
 		moc_alarmframe.cpp \
 		moc_buzzercontrol.cpp \
-		moc_ledcontrol.cpp
+		moc_ledcontrol.cpp \
+		moc_getstatuethread.cpp
 OBJECTS       = main.o \
 		mainwidget.o \
 		mainframe.o \
@@ -80,6 +82,7 @@ OBJECTS       = main.o \
 		alarmframe.o \
 		buzzercontrol.o \
 		ledcontrol.o \
+		getstatuethread.o \
 		qrc_image.o \
 		moc_mainwidget.o \
 		moc_mainframe.o \
@@ -90,7 +93,8 @@ OBJECTS       = main.o \
 		moc_lightframe.o \
 		moc_alarmframe.o \
 		moc_buzzercontrol.o \
-		moc_ledcontrol.o
+		moc_ledcontrol.o \
+		moc_getstatuethread.o
 DIST          = ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/features/spec_pre.prf \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/common/shell-unix.conf \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/common/unix.conf \
@@ -188,7 +192,9 @@ DIST          = ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/us
 		lightframe.h \
 		alarmframe.h \
 		buzzercontrol.h \
-		ledcontrol.h main.cpp \
+		ledcontrol.h \
+		getstatuethread.h \
+		devicessetting.h main.cpp \
 		mainwidget.cpp \
 		mainframe.cpp \
 		tempframe.cpp \
@@ -198,7 +204,8 @@ DIST          = ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/us
 		lightframe.cpp \
 		alarmframe.cpp \
 		buzzercontrol.cpp \
-		ledcontrol.cpp
+		ledcontrol.cpp \
+		getstatuethread.cpp
 QMAKE_TARGET  = SmartHome
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = SmartHome
@@ -320,7 +327,8 @@ Makefile: SmartHome.pro ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output
 		image.qrc \
 		/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/lib/libQt5Widgets.prl \
 		/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/lib/libQt5Gui.prl \
-		/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/lib/libQt5Core.prl
+		/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/lib/libQt5Core.prl \
+		/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/lib/libQt5Network.prl
 	$(QMAKE) -o Makefile SmartHome.pro
 ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/features/spec_pre.prf:
 ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/common/shell-unix.conf:
@@ -414,6 +422,7 @@ image.qrc:
 /home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/lib/libQt5Widgets.prl:
 /home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/lib/libQt5Gui.prl:
 /home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/lib/libQt5Core.prl:
+/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/lib/libQt5Network.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile SmartHome.pro
 
@@ -429,8 +438,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents image.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents mainwidget.h mainframe.h framesetting.h tempframe.h moistureframe.h smokeframe.h airconditionframe.h lightframe.h alarmframe.h buzzercontrol.h ledcontrol.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp mainwidget.cpp mainframe.cpp tempframe.cpp moistureframe.cpp smokeframe.cpp airconditionframe.cpp lightframe.cpp alarmframe.cpp buzzercontrol.cpp ledcontrol.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents mainwidget.h mainframe.h framesetting.h tempframe.h moistureframe.h smokeframe.h airconditionframe.h lightframe.h alarmframe.h buzzercontrol.h ledcontrol.h getstatuethread.h devicessetting.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp mainwidget.cpp mainframe.cpp tempframe.cpp moistureframe.cpp smokeframe.cpp airconditionframe.cpp lightframe.cpp alarmframe.cpp buzzercontrol.cpp ledcontrol.cpp getstatuethread.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwidget.ui mainframe.ui tempframe.ui moistureframe.ui somkeframe.ui airconditionframe.ui lightframe.ui alarmframe.ui $(DISTDIR)/
 
 
@@ -488,9 +497,9 @@ qrc_image.cpp: image.qrc \
 		image/lamp_on.png
 	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/rcc -name image image.qrc -o qrc_image.cpp
 
-compiler_moc_header_make_all: moc_mainwidget.cpp moc_mainframe.cpp moc_tempframe.cpp moc_moistureframe.cpp moc_smokeframe.cpp moc_airconditionframe.cpp moc_lightframe.cpp moc_alarmframe.cpp moc_buzzercontrol.cpp moc_ledcontrol.cpp
+compiler_moc_header_make_all: moc_mainwidget.cpp moc_mainframe.cpp moc_tempframe.cpp moc_moistureframe.cpp moc_smokeframe.cpp moc_airconditionframe.cpp moc_lightframe.cpp moc_alarmframe.cpp moc_buzzercontrol.cpp moc_ledcontrol.cpp moc_getstatuethread.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwidget.cpp moc_mainframe.cpp moc_tempframe.cpp moc_moistureframe.cpp moc_smokeframe.cpp moc_airconditionframe.cpp moc_lightframe.cpp moc_alarmframe.cpp moc_buzzercontrol.cpp moc_ledcontrol.cpp
+	-$(DEL_FILE) moc_mainwidget.cpp moc_mainframe.cpp moc_tempframe.cpp moc_moistureframe.cpp moc_smokeframe.cpp moc_airconditionframe.cpp moc_lightframe.cpp moc_alarmframe.cpp moc_buzzercontrol.cpp moc_ledcontrol.cpp moc_getstatuethread.cpp
 moc_mainwidget.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QWidget \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qwidget.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qwindowdefs.h \
@@ -594,7 +603,7 @@ moc_mainwidget.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/hos
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qvector2d.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtouchdevice.h \
 		mainwidget.h
-	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include mainwidget.h -o moc_mainwidget.cpp
+	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/siku -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtNetwork -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include mainwidget.h -o moc_mainwidget.cpp
 
 moc_mainframe.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QFrame \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qframe.h \
@@ -703,7 +712,7 @@ moc_mainframe.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtimer.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasictimer.h \
 		mainframe.h
-	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include mainframe.h -o moc_mainframe.cpp
+	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/siku -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtNetwork -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include mainframe.h -o moc_mainframe.cpp
 
 moc_tempframe.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QFrame \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qframe.h \
@@ -812,7 +821,7 @@ moc_tempframe.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtimer.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasictimer.h \
 		tempframe.h
-	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include tempframe.h -o moc_tempframe.cpp
+	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/siku -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtNetwork -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include tempframe.h -o moc_tempframe.cpp
 
 moc_moistureframe.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QFrame \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qframe.h \
@@ -921,7 +930,7 @@ moc_moistureframe.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtimer.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasictimer.h \
 		moistureframe.h
-	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include moistureframe.h -o moc_moistureframe.cpp
+	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/siku -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtNetwork -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include moistureframe.h -o moc_moistureframe.cpp
 
 moc_smokeframe.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QFrame \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qframe.h \
@@ -1030,7 +1039,7 @@ moc_smokeframe.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/hos
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtimer.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasictimer.h \
 		smokeframe.h
-	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include smokeframe.h -o moc_smokeframe.cpp
+	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/siku -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtNetwork -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include smokeframe.h -o moc_smokeframe.cpp
 
 moc_airconditionframe.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QFrame \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qframe.h \
@@ -1136,7 +1145,7 @@ moc_airconditionframe.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/out
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qvector2d.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtouchdevice.h \
 		airconditionframe.h
-	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include airconditionframe.h -o moc_airconditionframe.cpp
+	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/siku -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtNetwork -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include airconditionframe.h -o moc_airconditionframe.cpp
 
 moc_lightframe.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QFrame \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qframe.h \
@@ -1242,7 +1251,7 @@ moc_lightframe.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/hos
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qvector2d.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtouchdevice.h \
 		lightframe.h
-	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include lightframe.h -o moc_lightframe.cpp
+	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/siku -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtNetwork -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include lightframe.h -o moc_lightframe.cpp
 
 moc_alarmframe.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QFrame \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qframe.h \
@@ -1348,7 +1357,7 @@ moc_alarmframe.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/hos
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qvector2d.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtouchdevice.h \
 		alarmframe.h
-	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include alarmframe.h -o moc_alarmframe.cpp
+	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/siku -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtNetwork -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include alarmframe.h -o moc_alarmframe.cpp
 
 moc_buzzercontrol.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QObject \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject.h \
@@ -1401,7 +1410,7 @@ moc_buzzercontrol.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qisenum.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject_impl.h \
 		buzzercontrol.h
-	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include buzzercontrol.h -o moc_buzzercontrol.cpp
+	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/siku -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtNetwork -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include buzzercontrol.h -o moc_buzzercontrol.cpp
 
 moc_ledcontrol.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QObject \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject.h \
@@ -1454,7 +1463,62 @@ moc_ledcontrol.cpp: ../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/hos
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qisenum.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject_impl.h \
 		ledcontrol.h
-	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ledcontrol.h -o moc_ledcontrol.cpp
+	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/siku -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtNetwork -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ledcontrol.h -o moc_ledcontrol.cpp
+
+moc_getstatuethread.cpp: devicessetting.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QThread \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qthread.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnamespace.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobal.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qconfig.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfeatures.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsystemdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qprocessordetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcompilerdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypeinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypetraits.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsysinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlogging.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qflags.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasicatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_bootstrap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qgenericatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_msvc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv7.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv6.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv5.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_ia64.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_mips.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_x86.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_cxx11.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_gcc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_unix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobalstatic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmutex.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnumeric.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstring.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qchar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrefcount.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qarraydata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringbuilder.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qalgorithms.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiterator.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearraylist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcoreevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qscopedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmetatype.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvarlengtharray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontainerfwd.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qisenum.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject_impl.h \
+		getstatuethread.h
+	/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/bin/moc $(DEFINES) -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/mkspecs/devices/linux-buildroot-g++ -I/home/uplooking/SmartHome/SmartHome -I/siku -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5 -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtNetwork -I/home/zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include getstatuethread.h -o moc_getstatuethread.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -1720,7 +1784,14 @@ mainwidget.o: mainwidget.cpp mainwidget.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QFrame \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qframe.h \
 		alarmframe.h \
+		buzzercontrol.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QObject \
 		framesetting.h \
+		getstatuethread.h \
+		devicessetting.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QThread \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qthread.h \
+		ledcontrol.h \
 		lightframe.h \
 		mainframe.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QTimer \
@@ -1767,7 +1838,8 @@ mainwidget.o: mainwidget.cpp mainwidget.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qpushbutton.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qabstractbutton.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/QSplitter \
-		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qsplitter.h
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtWidgets/qsplitter.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwidget.o mainwidget.cpp
 
 mainframe.o: mainframe.cpp mainframe.h \
@@ -2643,6 +2715,10 @@ lightframe.o: lightframe.cpp lightframe.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfiledevice.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qvector2d.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtGui/qtouchdevice.h \
+		devicessetting.h \
+		getstatuethread.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QThread \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qthread.h \
 		ledcontrol.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QObject \
 		ui_lightframe.h \
@@ -2887,7 +2963,8 @@ buzzercontrol.o: buzzercontrol.cpp buzzercontrol.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvarlengtharray.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontainerfwd.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qisenum.h \
-		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject_impl.h
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject_impl.h \
+		devicessetting.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o buzzercontrol.o buzzercontrol.cpp
 
 ledcontrol.o: ledcontrol.cpp ledcontrol.h \
@@ -2943,6 +3020,62 @@ ledcontrol.o: ledcontrol.cpp ledcontrol.h \
 		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject_impl.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ledcontrol.o ledcontrol.cpp
 
+getstatuethread.o: getstatuethread.cpp getstatuethread.h \
+		devicessetting.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/QThread \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qthread.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnamespace.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobal.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qconfig.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qfeatures.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsystemdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qprocessordetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcompilerdetection.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypeinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qtypetraits.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qsysinfo.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlogging.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qflags.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbasicatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_bootstrap.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qgenericatomic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_msvc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv7.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv6.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_armv5.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_ia64.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_mips.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_x86.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_cxx11.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_gcc.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qatomic_unix.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qglobalstatic.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmutex.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qnumeric.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobjectdefs_impl.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstring.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qchar.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qrefcount.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qarraydata.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qstringbuilder.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qlist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qalgorithms.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qiterator.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qbytearraylist.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcoreevent.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qscopedpointer.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qmetatype.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qvarlengtharray.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qcontainerfwd.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qisenum.h \
+		../../../zyli/s5p6818sdk_lzy1/Linux/src/buildroot/output/host/usr/arm-buildroot-linux-gnueabi/sysroot/usr/include/qt5/QtCore/qobject_impl.h \
+		/siku/yeelink_lzy.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o getstatuethread.o getstatuethread.cpp
+
 qrc_image.o: qrc_image.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_image.o qrc_image.cpp
 
@@ -2975,6 +3108,9 @@ moc_buzzercontrol.o: moc_buzzercontrol.cpp
 
 moc_ledcontrol.o: moc_ledcontrol.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_ledcontrol.o moc_ledcontrol.cpp
+
+moc_getstatuethread.o: moc_getstatuethread.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_getstatuethread.o moc_getstatuethread.cpp
 
 ####### Install
 

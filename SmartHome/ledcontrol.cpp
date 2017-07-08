@@ -19,3 +19,11 @@ void LedControl::ledOff(int i) {
           .arg(i));
   system(sh.toLatin1().data());
 }
+
+void LedControl::ledControl(int i, int state) {
+  if (state) {
+    ledOn(i);
+  } else {
+    ledOff(i);
+  }
+}

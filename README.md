@@ -93,7 +93,7 @@ add follows
 > The internet cloud servers yeelink
 > [yeelink][]
 
-[yeelink]:www.yeelink.net
+[yeelink]:http://www.yeelink.net
 
 yeelink作用
 ```
@@ -241,3 +241,45 @@ source ~/.bashrc
 	   /mnt/armqt
 	8. umount
 	   umount /mnt
+
+## led & buzzer on/off:
+  shell operation:
+### buzzer:
+```
+echo 1 > /sys/devices/platform/x6818-beep/state
+echo 0 > /sys/devices/platform/x6818-beep/state
+```
+### leds:
+```
+echo 1 > /sys/devices/platform/leds-gpio/leds/led1/brightess
+echo 0 > /sys/devices/platform/leds-gpio/leds/led1/brightess
+```
+
+#### smartPhone to control board
+> arm << libyeelink_lzy.so
+```
+ arm-linux-g++ ledyeelink.cpp -o ledyeelink -L ./ -lyeelink_lzy
+```
+> -L set the dirctery
+>
+>-l set the name of lld
+
+> copy libyeelink_lzy.so to board's /bin
+
+run shell at borad:
+
+```
+mount -t nfs -o nolock,rw 192.168.100.53:/abc /mnt/
+cp /mnt/ledyeelink /bin/
+cp /mnt/libyeelink_lzy.so  /lib
+
+ifconfig
+```
+> dhcp get IP (board should be able to internet)
+```
+ /etc/init.d/S40network restart
+```
+> rum app use smartphone to control led
+```
+./ledyeelink
+```

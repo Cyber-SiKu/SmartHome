@@ -13,6 +13,8 @@ class LightFrame : public QFrame {
 public:
   explicit LightFrame(QWidget *parent = 0);
   ~LightFrame();
+  void update();
+  void show();
 
 private slots:
   void on_bedroomPushButton_clicked();
@@ -20,6 +22,8 @@ private slots:
   void on_parlourPushButton_clicked();
 
   void on_kitchenPushButton_clicked();
+
+  void init();
 
 private:
   Ui::LightFrame *ui;
