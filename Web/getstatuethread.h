@@ -10,7 +10,6 @@ class GetStatueThread : public QThread {
   Q_OBJECT
 public:
   GetStatueThread();
-  void run();
 
 signals:
   void stateSingnal(int, int);
@@ -18,9 +17,10 @@ signals:
 private slots:
   void recvReplyHandler(QNetworkReply *);
 
+
 private:
-  QNetworkAccessManager *manager;
   QNetworkRequest yeelinkRequest;
+  QNetworkAccessManager *manager;
 };
 
 #endif // GETSTATUETHREAD_H

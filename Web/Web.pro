@@ -24,11 +24,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-		widget.cpp \
-	getstatuethread.cpp
+		widget.cpp
 
-HEADERS  += widget.h \
-	getstatuethread.h
+HEADERS  += widget.h
 
 FORMS    += widget.ui
 
