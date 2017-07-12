@@ -39,19 +39,6 @@
     <string>浏览</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>679</x>
-     <y>290</y>
-     <width>141</width>
-     <height>141</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
   <widget class="QLabel" name="picture">
    <property name="geometry">
     <rect>

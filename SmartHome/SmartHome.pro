@@ -34,7 +34,8 @@ SOURCES += main.cpp\
 	alarmframe.cpp \
 	buzzercontrol.cpp \
 	ledcontrol.cpp \
-	getstatuethread.cpp
+	getstatuethread.cpp \
+    yeelinkconnect.cpp
 
 HEADERS  += mainwidget.h \
 	mainframe.h \
@@ -48,7 +49,8 @@ HEADERS  += mainwidget.h \
 	buzzercontrol.h \
 	ledcontrol.h \
 	getstatuethread.h \
-	devicessetting.h
+	devicessetting.h \
+    yeelinkconnect.h
 
 FORMS    += mainwidget.ui \
 	mainframe.ui \
