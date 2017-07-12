@@ -302,8 +302,32 @@ QT多线程编程
 		在主线程中创建新线程
 			该部分由学员自行编写
 	
+
+	yeelink_lzy.so ---> C++ http
+
 QT5 web编程
+	yeelink:ubuntu+ngix+mysql
+	http
+	QT
+	web---->get------>简单  不安全 数据暴露在url中
+	   ---->post----->安全
+
+	获取开关状态--->GET方法
+	上传温度数据--->POST方法
+
+视频监控和抓拍
+	1.V4L2  h.264
+	  open--->ioctl--->mmap---->close	
+	  采集图片--->socket---->PC--->QT
+	2.采用mpeg-streamer
+	  C--->x86 arm
+
+	移植mpeg-steamer
 	
+	嵌入式天空---->搜索steamer
+	
+	
+		
 
 
 
