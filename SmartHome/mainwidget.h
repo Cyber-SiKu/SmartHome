@@ -1,6 +1,8 @@
 #ifndef MAINWIDGET_H
 #define MAINWIDGET_H
 
+#include "yeelinkconnect.h"
+
 #include <QWidget>
 
 namespace Ui {
@@ -39,6 +41,10 @@ private slots:
 
 private:
   Ui::MainWidget *ui;
+  YeelinkConnect *yc;
+  QTimer *timer;
+private slots:
+  void timerHandler();
 };
 
 #endif // MAINWIDGET_H
