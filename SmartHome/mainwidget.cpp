@@ -14,6 +14,7 @@
 #include "smokeframe.h"
 #include "tempframe.h"
 #include "ui_mainwidget.h"
+
 #include <QDebug>
 #include <typeinfo>
 
@@ -34,6 +35,12 @@ MainWidget::MainWidget(QWidget *parent)
   gt->start();
   connect(gt, SIGNAL(statueSignal(int, int)), this,
           SLOT(getSatesSignalHandler(int, int)));
+  yc = new YeelinkConnect(this);
+  timer = new QTimer(this);
+  connect(timer, SIGNAL(timeout()), this, SLOT(timerHandler()));
+  timer->start(1000);
+  QObject::connect(yc->networkAccessManager, SIGNAL(finished(QNetworkReply *)),
+                   yc, SLOT(getSensorStatusValue(QNetworkReply *)));
 }
 
 MainWidget::~MainWidget() { delete ui; }
@@ -160,4 +167,14 @@ void MainWidget::getSatesSignalHandler(int id, int state) {
     qDebug() << "照明界面";
   } catch (std::bad_cast &) {
   }
+}
+
+void MainWidget::timerHandler() {
+  /*
+"118.190.25.51", "359635", "410077",
+                              "b36d241909a3db268eef175b26d40e23"
+*/
+  yc->getSensorStatus("b36d241909a3db268eef175b26d40e23", "359635", "410077");
+  yc->networkAccessManager->get(yc->request);
+  //  qDebug() << __FUNCTION__ << yc->devices_status_;
 }
